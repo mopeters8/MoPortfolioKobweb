@@ -19,6 +19,12 @@ kobweb {
             description.set("Owen Peters Portfolio!")
             head.add {
                 link(rel = "stylesheet", href = "/index.css")
+                link(rel = "stylesheet", href = "/styles.css")
+
+                link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                link(rel = "preconnect", href = "https://fonts.gstatic.com")
+                link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap")
+
             }
         }
     }

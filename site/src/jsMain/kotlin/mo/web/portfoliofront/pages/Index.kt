@@ -1,26 +1,44 @@
 package mo.web.portfoliofront.pages
 
 import androidx.compose.runtime.*
-import com.varabyte.kobweb.compose.foundation.layout.Box
-import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.core.Page
-import org.jetbrains.compose.web.css.vh
+import com.varabyte.kobweb.core.data.add
+import com.varabyte.kobweb.core.init.InitRoute
+import com.varabyte.kobweb.core.init.InitRouteContext
+import com.varabyte.kobweb.core.layout.Layout
+import com.varabyte.kobweb.core.rememberPageContext
 import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
+import mo.web.portfoliofront.components.layout.PageLayoutData
+import mo.web.portfoliofront.utility.custClasses
 import mo.web.portfoliofront.worker.EchoWorker
+import org.jetbrains.compose.web.dom.H1
+import org.jetbrains.compose.web.dom.Main
+import org.jetbrains.compose.web.dom.P
+import org.jetbrains.compose.web.dom.Section
+
+@InitRoute
+fun initHomePage(ctx: InitRouteContext) {
+    ctx.data.add(PageLayoutData(title = "Owen Peters"))
+}
 
 @Page
+@Layout(".components.layout.PageLayout")
 @Composable
 fun HomePage() {
+    val context = rememberPageContext()
     val worker = rememberWorker { EchoWorker { output -> console.log("Echoed: $output") } }
     LaunchedEffect(Unit) {
         worker.postInput("Hello, worker!")
     }
 
-    // TODO: Replace the following with your own content
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("THIS PAGE INTENTIONALLY LEFT BLANK")
+    Main(Modifier.custClasses("main-section capped-width")) {
+
+        Section(Modifier.custClasses("hero")) {
+            H1 { Text("Owen Peters.") }
+            P { Text("Developing, Learning, Living.") }
+        }
     }
+
 }
