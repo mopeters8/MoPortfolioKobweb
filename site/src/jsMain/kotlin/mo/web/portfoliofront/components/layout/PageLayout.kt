@@ -2,14 +2,13 @@ package mo.web.portfoliofront.components.layout
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.varabyte.kobweb.compose.css.GridTrackBuilderInRepeat
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.gridRow
 import com.varabyte.kobweb.compose.ui.modifiers.gridTemplateRows
@@ -18,15 +17,16 @@ import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.PageContext
 import com.varabyte.kobweb.core.data.getValue
 import com.varabyte.kobweb.core.layout.Layout
-import com.varabyte.kobweb.silk.style.CssStyle
-import com.varabyte.kobweb.silk.style.StyleScope
-import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.style.toAttrs
 import kotlinx.browser.document
+import mo.web.portfoliofront.components.sections.Navbar
+import mo.web.portfoliofront.utility.AttrClasses
+import mo.web.portfoliofront.utility.ModClasses
+import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.fr
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vh
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Footer
 
 class PageLayoutData(
     val title: String
@@ -47,6 +47,7 @@ fun PageLayout(
         Modifier
             .fillMaxWidth()
             .minHeight(100.vh)
+            .border(1.px, LineStyle.Solid, Colors.Blue)
             .gridTemplateRows {
                 size(1.fr);
                 size(minContent)
@@ -54,9 +55,11 @@ fun PageLayout(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            Modifier.fillMaxSize().gridRow(1),
+            Modifier.gridRow(1).border(1.px, LineStyle.Solid, Colors.Green)
+                .ModClasses("capped-width").height(100.percent),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Navbar()
             Div(Modifier.classNames("pageContentStyle").toAttrs()) {
                 content()
             }

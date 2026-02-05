@@ -18,7 +18,7 @@ kobweb {
         index {
             description.set("Owen Peters Portfolio!")
             head.add {
-                link(rel = "stylesheet", href = "/index.css")
+                link(rel = "stylesheet", href = "/reset.css")
                 link(rel = "stylesheet", href = "/styles.css")
 
                 link(rel = "preconnect", href = "https://fonts.googleapis.com")

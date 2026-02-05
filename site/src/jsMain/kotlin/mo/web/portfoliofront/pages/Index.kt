@@ -8,13 +8,17 @@ import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
 import com.varabyte.kobweb.core.rememberPageContext
+import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
+import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.layout.PageLayoutData
-import mo.web.portfoliofront.utility.custClasses
+import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.worker.EchoWorker
+import org.jetbrains.compose.web.dom.Br
+import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
-import org.jetbrains.compose.web.dom.Main
+import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Section
 
@@ -33,12 +37,42 @@ fun HomePage() {
         worker.postInput("Hello, worker!")
     }
 
-    Main(Modifier.custClasses("main-section capped-width")) {
+    Section(Modifier.AttrClasses("hero")) {
+        Img(
+            src = "/owenhs.png",
+            attrs = Modifier.AttrClasses("hero-image")
+        )
 
-        Section(Modifier.custClasses("hero")) {
-            H1 { Text("Owen Peters.") }
-            P { Text("Developing, Learning, Living.") }
+        Div(Modifier.AttrClasses("hero-content")) {
+
+            H1 {
+                Text("Web Dev - end to end.")
+                Br{}
+                SpanText("Turning coffee into code.",)
+            }
+
+            P {
+                Text("I’m a full-stack web developer focused on building web software that’s dependable and easy to work with. My background spans frontend interfaces, backend services, and deployment. I visualize the full lifecycle of an application, not just one piece of it.")
+                Br()
+                Br()
+                Text("With experience in teaching, IT support, and freelance work I am comfortable explaining ideas, debugging issues, and working with those who are not developers. I value teams that prioritize clarity, collaboration, and steady improvement over hype.")
+            }
         }
+
+    }
+
+    Section(Modifier.AttrClasses("projects-section")) {
+        SectionHeader(title = "Projects")
+    }
+
+    Section(Modifier.AttrClasses("blog-section")) {
+        SectionHeader(title = "Updates")
+
+    }
+
+    Section(Modifier.AttrClasses("contact-section")) {
+        SectionHeader(title = "Contact & Resume")
+
     }
 
 }

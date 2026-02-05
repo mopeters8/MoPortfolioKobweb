@@ -1,22 +1,117 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --text: oklch(0.00% 0.000 0.00);
+        --background: oklch(89.14% 0.000 89.88);
+        --primary: oklch(75.52% 0.127 139.43);
+        --secondary: oklch(63.51% 0.111 91.91);
+        --accent: oklch(74.15% 0.045 51.89);
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: oklch(100.00% 0.000 89.88);
+        --background: oklch(26.03% 0.000 89.88);
+        --primary: oklch(57.57% 0.130 139.61);
+        --secondary: oklch(78.14% 0.114 92.91);
+        --accent: oklch(45.25% 0.051 51.18);
+    }
+}
+
 body {
     background-color: var(--background);
     color: var(--text);
     font-family: "Lexend", sans-serif;
 }
 
-.capped-width {
-    width: min(900px, calc(100% - 1rem));
-}
-
-.main-section {
-    margin: 0px auto;
-    display: flex;
-    flex-direction: column;
-
-    border: 1px solid red;
-}
-
 .pageContentStyle {
     width: 100%;
     height: 100%;
 }
+
+.capped-width {
+    width: min(900px, calc(100% - 1rem));
+}
+
+.section-header {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text);
+
+    text-decoration-line: none;
+}
+
+/* Navbar & Items */
+
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0rem;
+}
+
+#nav-name {
+    font-size: 2rem;
+    text-decoration-line: none;
+    transition: all 0.4s ease-in-out;
+}
+
+#nav-name:hover {
+    scale: 1.1;
+}
+
+.nav-items-list {
+    list-style: none;
+    display: flex;
+    gap: .75rem;
+}
+
+.nav-item {
+    font-size: 1.2rem;
+    color: var(--text)
+}
+
+/* Hero Section */
+
+.hero {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    border: 1px solid red;
+}
+
+.hero-image {
+    height: 250px;
+    width: 600px;
+    border-radius: 10%;
+    object-fit: contain;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 span {
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+.hero-content p {
+    color: silver
+}
+
+/* Projects Section */

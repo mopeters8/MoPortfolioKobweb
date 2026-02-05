@@ -54,25 +54,3 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
     isolation: isolate;
 }
-
-/*
-  11. Site Color Scheme
-*/
-@media (prefers-color-scheme: light) {
-    :root {
-        --text: oklch(0.00% 0.000 0.00);
-        --background: oklch(89.14% 0.000 89.88);
-        --primary: oklch(75.52% 0.127 139.43);
-        --secondary: oklch(63.51% 0.111 91.91);
-        --accent: oklch(74.15% 0.045 51.89);
-    }
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: oklch(100.00% 0.000 89.88);
-        --background: oklch(26.03% 0.000 89.88);
-        --primary: oklch(57.57% 0.130 139.61);
-        --secondary: oklch(78.14% 0.114 92.91);
-        --accent: oklch(45.25% 0.051 51.18);
-    }
-}
