@@ -13,11 +13,14 @@ import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.layout.PageLayoutData
+import mo.web.portfoliofront.components.sections.ProjectDisplay
+import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
 import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.worker.EchoWorker
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
+import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Section
@@ -61,17 +64,21 @@ fun HomePage() {
 
     }
 
-    Section(Modifier.AttrClasses("projects-section")) {
+    Section(Modifier.AttrClasses("projects-section content-section")) {
         SectionHeader(title = "Projects")
+        Hr()
+        ProjectDisplay(projectList = PROJECTS_LIST)
     }
 
-    Section(Modifier.AttrClasses("blog-section")) {
-        SectionHeader(title = "Updates")
+    Section(Modifier.AttrClasses("blog-section content-section")) {
+        SectionHeader(title = "Blogs")
+        Hr()
 
     }
 
-    Section(Modifier.AttrClasses("contact-section")) {
+    Section(Modifier.AttrClasses("contact-section content-section")) {
         SectionHeader(title = "Contact & Resume")
+        Hr()
 
     }
 

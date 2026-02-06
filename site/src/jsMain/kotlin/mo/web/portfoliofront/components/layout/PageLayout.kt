@@ -47,7 +47,6 @@ fun PageLayout(
         Modifier
             .fillMaxWidth()
             .minHeight(100.vh)
-            .border(1.px, LineStyle.Solid, Colors.Blue)
             .gridTemplateRows {
                 size(1.fr);
                 size(minContent)
@@ -55,8 +54,7 @@ fun PageLayout(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            Modifier.gridRow(1).border(1.px, LineStyle.Solid, Colors.Green)
-                .ModClasses("capped-width").height(100.percent),
+            Modifier.gridRow(1).ModClasses("capped-width").height(100.percent),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Navbar()
