@@ -4,11 +4,13 @@ import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.silk.components.navigation.Link
+import mo.web.portfoliofront.components.widgets.ThemeToggle
 import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.utility.Constants
 import mo.web.portfoliofront.utility.ModClasses
 import org.jetbrains.compose.web.dom.Nav
 import org.jetbrains.compose.web.dom.Ul
+import org.jetbrains.compose.web.dom.Li
 
 @Composable
 fun Navbar() {
@@ -20,21 +22,27 @@ fun Navbar() {
         )
 
         Ul(Modifier.AttrClasses("nav-items-list")) {
-            Link(
-                path = Constants.PATH_ABOUT,
-                text = "About",
-                modifier = Modifier.ModClasses("nav-item"),
-            )
-            Link(
-                path = Constants.PATH_PROJECTS,
-                text = "Projects",
-                modifier = Modifier.ModClasses("nav-item"),
-            )
-            Link(
-                path = Constants.LINK_BLOG,
-                text = "Blog",
-                modifier = Modifier.ModClasses("nav-item"),
-            )
+            Li {
+                Link(
+                    path = Constants.PATH_ABOUT,
+                    text = "About",
+                    modifier = Modifier.ModClasses("nav-item"),
+                )
+            }
+            Li {
+                Link(
+                    path = Constants.PATH_PROJECTS,
+                    text = "Projects",
+                    modifier = Modifier.ModClasses("nav-item"),
+                )
+            }
+            Li {
+                Link(
+                    path = Constants.LINK_BLOG,
+                    text = "Blog",
+                    modifier = Modifier.ModClasses("nav-item"),
+                )
+            }
         }
     }
 }

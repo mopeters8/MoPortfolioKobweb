@@ -5,7 +5,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaSquareUpRight
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
-import mo.web.portfoliofront.infrastructure.models.Project
+import mo.web.portfoliofront.infrastructure.models.Blog
 import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.utility.ModClasses
 import org.jetbrains.compose.web.dom.Div
@@ -15,34 +15,36 @@ import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun ProjectCard(
-    proj: Project,
-    onProjectClick: (Project) -> Unit,
+fun BlogCard(
+    blog: Blog
 ) {
-    Div(attrs = {
-        classes("project-card", "subtle")
-        onClick { onProjectClick(proj) }
-    }) {
-        Img(
-            src = proj.imageURLs[0].src,
-            alt = proj.imageURLs[0].alt
-        )
+    Div(Modifier.AttrClasses("blog-card subtle")) {
+        // Only show image if available
+        blog.imageUrl?.let {
+            Img(
+                src = it,
+                alt = "${blog.title} image"
+            )
+        }
 
-        H5() { Text(proj.title) }
+        H5() { Text(blog.title) }
 
         SpanText(
-            text = proj.date,
+            text = blog.date,
             modifier = Modifier.ModClasses("subtle")
         )
 
-        P() { Text(proj.description) }
+        P() { Text(blog.description) }
 
-        Link(
-            path = proj.linkInfo.url,
-            modifier = Modifier.ModClasses("subtle")
-        ) {
-            Text(proj.linkInfo.presentation)
-            FaSquareUpRight(modifier = Modifier)
+        // Only show link if available
+        blog.link?.let {
+            Link(
+                path = it.url,
+                modifier = Modifier.ModClasses("subtle")
+            ) {
+                Text(it.presentation)
+                FaSquareUpRight(modifier = Modifier)
+            }
         }
     }
 }

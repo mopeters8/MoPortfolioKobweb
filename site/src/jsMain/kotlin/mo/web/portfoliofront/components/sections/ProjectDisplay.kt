@@ -9,13 +9,15 @@ import org.jetbrains.compose.web.dom.Div
 
 @Composable
 fun ProjectDisplay(
-    projectList: List<Project>
+    projectList: List<Project>,
+    onProjectClick: (Project) -> Unit,
 ) {
     Div(Modifier.AttrClasses("project-container")) {
         projectList.forEach { project ->
-            repeat(3) {// TODO delete used for testing with only 1 project
-                ProjectCard(proj = project)
-            }
+            ProjectCard(
+                proj = project,
+                onProjectClick = onProjectClick,
+            )
         }
     }
 }
