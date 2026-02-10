@@ -8,7 +8,9 @@ package mo.web.portfoliofront.infrastructure.models
 data class Project(
     // Main - Preview Card viewing Material
     val title: String,
-    val description: String,
+    val description: String, // Small Preview Text
+    val overview: String, // Detailed Text for Modal
+
     val linkInfo: ProjectLink,
     val date: String,
     val imageURLs: List<ProjectImage>,
@@ -17,6 +19,7 @@ data class Project(
     val technologies: List<Technologies>,
     val features: List<String>,
     val challenges: List<String>,
+    val experience: String,
 )
 
 data class ProjectLink(
@@ -29,12 +32,13 @@ data class ProjectImage(
     val alt: String,
 )
 
-enum class Technologies {
-    KOTLIN,
-    KOBWEB,
-    KTOR,
-    JOOQ,
-    PSQL,
-    POCKETBASE,
-    MONGODB,
+enum class Technologies(val iconUrl: String) {
+    KOTLIN("/icons/Kotlin.svg"),
+    KOBWEB("/icons/kobweb.svg"),
+    KTOR("/icons/ktor.svg"),
+    JOOQ("/icons/jooq.png"),
+    PSQL("/icons/psql.svg"),
+    POCKETBASE("/icons/pocketbase.svg"),
+    MONGODB("/icons/mongodb.svg"),
+    BOOTSTRAP("/icons/Bootstrap.svg"),
 }

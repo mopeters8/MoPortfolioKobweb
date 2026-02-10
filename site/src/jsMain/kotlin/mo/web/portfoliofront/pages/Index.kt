@@ -11,6 +11,7 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
 import mo.web.portfoliofront.components.ModalOverlay
+import mo.web.portfoliofront.components.ProjectModal
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import mo.web.portfoliofront.components.sections.BlogDisplay
@@ -60,7 +61,12 @@ fun HomePage() {
             openedProject = null
         },
     ) {
-        openedProject?.let { Text("Project: ${it.title}") }
+        openedProject?.let { project ->
+            ProjectModal(
+                project = project,
+                onClose = { openedProject = null }
+            )
+        }
     }
 
     Section(attrs = { classes("hero") }) {

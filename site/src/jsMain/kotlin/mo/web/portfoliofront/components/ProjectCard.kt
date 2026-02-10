@@ -20,7 +20,7 @@ fun ProjectCard(
     onProjectClick: (Project) -> Unit,
 ) {
     Div(attrs = {
-        classes("project-card", "subtle")
+        classes("project-card")
         onClick { onProjectClick(proj) }
     }) {
         Img(

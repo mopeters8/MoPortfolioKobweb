@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="kobweb" transform="translate(-3895 5636)">
+    <rect id="Rectangle_3785" data-name="Rectangle 3785" width="256" height="256" transform="translate(3895 -5636)" fill="#f7f7f7"/>
+    <g id="Group_18344" data-name="Group 18344" transform="translate(4778.275 -4399.548)">
+      <rect id="Rectangle_4978" data-name="Rectangle 4978" width="58.341" height="58.341" rx="11" transform="translate(-764.344 -1149.706) rotate(45)" fill="#1e4450"/>
+      <path id="Subtraction_4" data-name="Subtraction 4" d="M23.867,72.841a11.592,11.592,0,0,1-8.25-3.418L0,53.807V19.034L15.617,3.417a11.669,11.669,0,0,1,16.5,0L56.87,28.17a11.667,11.667,0,0,1,0,16.5L32.118,69.424A11.594,11.594,0,0,1,23.867,72.841Z" transform="translate(-771.239 -1144.873)" fill="#0079f2"/>
+      <path id="Polygon_152" data-name="Polygon 152" d="M33.077,1.364a2,2,0,0,1,2.794,0l29.563,28.86a2,2,0,0,1-1.4,3.431H4.912a2,2,0,0,1-1.4-3.431Z" transform="translate(-713.717 -1142.927) rotate(90)" fill="#1885f3"/>
+    </g>
+  </g>
+</svg>
