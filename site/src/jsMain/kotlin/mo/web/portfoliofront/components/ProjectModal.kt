@@ -59,14 +59,6 @@ fun ProjectModal(
                     P { Text(project.overview) }
                 }
 
-//                // Date and Links
-//                Div(attrs = { classes("project-modal-meta") }) {
-//                    SpanText(
-//                        text = project.date,
-//                        modifier = Modifier.ModClasses("project-modal-date subtle")
-//                    )
-//                }
-
                 // Features
                 Div(attrs = { classes("project-modal-section") }) {
                     H3 { Text("Key Features") }
@@ -125,6 +117,11 @@ fun ProjectModal(
                             alt = image.alt,
                             attrs = { classes("project-modal-image") }
                         )
+                    }
+
+                    // End of images indicator
+                    Div(attrs = { classes("subtle", "subtle-note") }) {
+                        Text("— end of images —")
                     }
                 }
             }

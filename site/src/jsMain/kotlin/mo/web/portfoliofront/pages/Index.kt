@@ -12,16 +12,16 @@ import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
 import mo.web.portfoliofront.components.ModalOverlay
 import mo.web.portfoliofront.components.ProjectModal
+import mo.web.portfoliofront.components.ProjectCardFeatured
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import mo.web.portfoliofront.components.sections.BlogDisplay
 import mo.web.portfoliofront.components.sections.ProjectDisplay
 import mo.web.portfoliofront.components.sections.ContactResume
-import mo.web.portfoliofront.components.sections.ProjectDisplayFeatured
 import mo.web.portfoliofront.infrastructure.FEATURED_PROJECT
 import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
-import mo.web.portfoliofront.infrastructure.TEST_BLOGS
 import mo.web.portfoliofront.infrastructure.models.Project
+import mo.web.portfoliofront.infrastructure.models.TEST_BLOG_LIST
 import mo.web.portfoliofront.worker.EchoWorker
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
@@ -52,7 +52,7 @@ fun HomePage() {
     val featuredProject = FEATURED_PROJECT
     var openedProject by remember { mutableStateOf<Project?>(null) }
 
-    val blogs = TEST_BLOGS // TODO fetch blog posts
+    val blogs = TEST_BLOG_LIST
 
     ModalOverlay(
         isOpen = openedProject != null,
@@ -96,7 +96,7 @@ fun HomePage() {
         SectionHeader(title = "Projects")
         Hr()
 
-        ProjectDisplayFeatured(
+        ProjectCardFeatured(
             project = featuredProject,
             onProjectClick = { openedProject = it }
         )
@@ -108,7 +108,7 @@ fun HomePage() {
     }
 
     Section(attrs = { classes("blog-section", "content-section") }) {
-        SectionHeader(title = "Blogs")
+        SectionHeader(title = "Blogs", link = "https://blog.owen-peters.com", linkText = "blog.owen-peters.com")
         Hr()
         BlogDisplay(blogList = blogs)
     }

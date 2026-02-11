@@ -5,16 +5,25 @@ package mo.web.portfoliofront.infrastructure.models
  */
 data class Blog(
     val title: String,
-    val date: String,
-    val description: String,
-    val imageUrl: String? = null,
-    val link: BlogLink? = null
+    val subtitle: String,
+    val url: String,
+    val created: String,
+    val readtime: Int,
 )
 
-/**
- * Data class representing a link to a blog post.
- */
-data class BlogLink(
-    val presentation: String,
-    val url: String
+val TEST_BLOG_LIST = listOf<Blog>(
+    Blog(
+        title = "My Favorite Games of 2025",
+        subtitle = "I promised myself I’d touch grass, but the ground was frozen and the game was warm.",
+        url = "https://blog.owen-peters.com/posts/favorite-games-of-2025",
+        created = "2024-01-01",
+        readtime = 5,
+    ),
+    Blog(
+        title = "New Blog! What are the changes?",
+        subtitle = "A deep dive into Kotlin Multiplatform development",
+        url = "https://blog.owen-peters.com/posts/exploring-kotlin-multiplatform",
+        created = "2024-02-15",
+        readtime = 5,
+    ),
 )
