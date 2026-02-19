@@ -25,7 +25,6 @@ import mo.web.portfoliofront.infrastructure.models.TEST_BLOG_LIST
 import mo.web.portfoliofront.worker.EchoWorker
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Footer
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.Img
@@ -92,7 +91,7 @@ fun HomePage() {
         }
     }
 
-    Section(attrs = { classes("projects-section", "content-section") }) {
+    Section(attrs = { classes("projects-section", "content-section", "fade-in-slow") }) {
         SectionHeader(title = "Projects")
         Hr()
 
@@ -118,9 +117,5 @@ fun HomePage() {
         Hr()
 
         ContactResume()
-    }
-
-    Footer {
-        Text("© 2024 Owen Peters. All rights reserved.")
     }
 }

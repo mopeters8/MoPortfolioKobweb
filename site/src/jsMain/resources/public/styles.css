@@ -37,6 +37,24 @@ body {
     width: min(900px, 100%);
 }
 
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-slow {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.8s;
+}
+
 .content-section {
     margin-bottom: 3rem;
 }
@@ -147,7 +165,9 @@ hr {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    padding: 3rem 0px;
+    padding: 5rem 0px;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
 }
 
 .hero-image {
@@ -266,97 +286,103 @@ hr {
 
 /* Contact and Resume Section */
 .contact-resume-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 900px;
+    margin: 1rem 0;
 }
 
-/* Stack into one column on small screens */
-@media (max-width: 768px) {
-    .contact-resume-container {
-        grid-template-columns: 1fr;
-    }
-
-    .resume-column {
-        margin-top: 1rem;
-    }
+.contact-message {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
-.contact-column .form-row {
+.contact-form {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    margin-bottom: .75rem;
+}
+
+.contact-form .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin-bottom: 1rem;
 }
 
 .contact-input,
 .contact-textarea {
     background: var(--background-hover);
     color: var(--text);
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid transparent;
+    outline: 2px solid transparent;
     padding: .6rem .75rem;
     border-radius: var(--border-radius);
     font-family: inherit;
     font-size: 1rem;
     resize: vertical;
+    width: 100%;
 }
 
 .contact-input:focus,
 .contact-textarea:focus {
+    transition: all 0.2s ease;
     outline: 2px solid var(--primary);
     outline-offset: 2px;
 }
 
-/* Submit button styling */
-.submit-button {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: var(--background);
-    border: none;
+.button-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button-divider {
+    opacity: 0.5;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.action-button {
+/*    flex: 1;*/
+    width: 100%;
+    text-align: center;
     padding: .75rem 1rem;
     border-radius: var(--border-radius);
+    text-decoration: none;
     cursor: pointer;
     font-weight: 600;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    font-size: 1rem;
+    background: transparent;
+    transition: all 0.2s ease;
 }
 
-.submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-}
-
-/* Resume column and fancy button */
-.resume-column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.resume-button {
-    background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-    color: var(--text);
+.action-button-primary {
     border: 2px solid var(--primary);
-    padding: 1rem 1.25rem;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s;
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
+    color: var(--primary);
 }
 
-.resume-button:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+.action-button-primary:hover {
+    background: var(--primary);
     color: var(--background);
 }
 
-.resume-link { text-decoration: none; }
+.action-button-secondary {
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.action-button-secondary:hover {
+    background: var(--secondary);
+    color: var(--background);
+}
+
 
 .theme-toggle-button {
     padding: 0.5rem;
@@ -392,10 +418,6 @@ hr {
 }
 
 .modal-content {
-/*    background-color: var(--background);*/
-/*    color: var(--text);*/
-/*    border-radius: var(--border-radius);*/
-/*    padding: 2rem;*/
     max-width: 90%;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
@@ -463,3 +485,42 @@ hr {
 
 }
 
+/* Footer Section */
+.footer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-copyright {
+    font-size: 0.875rem;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.footer-social-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-social-link {
+    color: var(--text);
+    opacity: 0.6;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.footer-social-link:hover {
+    opacity: 1;
+    color: var(--secondary);
+    transform: translateY(-2px);
+}

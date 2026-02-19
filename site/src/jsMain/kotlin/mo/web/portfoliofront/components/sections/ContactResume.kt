@@ -13,70 +13,71 @@ import org.jetbrains.compose.web.dom.Text
 import kotlinx.browser.document
 import kotlinx.browser.window
 import mo.web.portfoliofront.utility.AttrClasses
-import mo.web.portfoliofront.utility.ModClasses
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.onSubmit
 
 @Composable
 fun ContactResume() {
     Div(Modifier.AttrClasses("contact-resume-container")) {
-        // Contact form column
-        Div(Modifier.AttrClasses("contact-column")) {
-            // Use AttrClasses with a trailing attrs block to combine classes + onSubmit
-            Form(attrs = {
-                Modifier.AttrClasses("contact-form")
-                onSubmit { it.preventDefault() } // avoid page reload
-            }) {
-                // Email input
-                Div(Modifier.AttrClasses("form-row")) {
-                    Text("Your email")
-                    Input(
-                        attrs = {
-                            attr("id", "contact-email")
-                            attr("placeholder", "you@example.com")
-                            attr("class", "contact-input") // keep local class on input via attrs
-                        },
-                        type = InputType.Email
-                    )
-                }
+        // Welcoming message
+        Div(attrs = {
+            classes("contact-message")
+        }) {
+            Text("Have a question or opportunity? Drop me a message below, or grab my resume. Either way I appreciate you checking this site out! ^_^")
+        }
 
-                // Message textarea
-                Div(Modifier.AttrClasses("form-row")) {
-                    Text("Message")
-                    TextArea(attrs = {
-                        attr("id", "contact-message")
-                        attr("placeholder", "Write your message here...")
-                        attr("class", "contact-textarea")
-                        attr("rows", "6")
-                    })
-                }
+        // Use AttrClasses with a trailing attrs block to combine classes + onSubmit
+        Form(attrs = {
+            classes("contact-form")
+            onSubmit { it.preventDefault() } // avoid page reload
+        }) {
+            // Email input
+            Div(Modifier.AttrClasses("form-row")) {
+                Input(
+                    attrs = {
+                        classes("contact-input")
+                        id("contact-email")
+                        attr("placeholder", "you@example.com")
+                    },
+                    type = InputType.Email
+                )
+            }
 
+            // Message textarea
+            Div(Modifier.AttrClasses("form-row")) {
+                TextArea(attrs = {
+                    classes("contact-textarea")
+                    id("contact-message")
+                    attr("placeholder", "Write your message here...")
+                    attr("rows", "4")
+                })
+            }
+
+            // Button row container
+            Div(Modifier.AttrClasses("button-row")) {
                 // Submit button: constructs mailto: with provided values
-                Button(attrs = Modifier.AttrClasses("submit-button") {
-                        attr("type", "button")
-                        onClick {
-                            val email = document.getElementById("contact-email")?.asDynamic()?.value ?: ""
-                            val message = document.getElementById("contact-message")?.asDynamic()?.value ?: ""
-                            val subject = "Contact from $email"
-                            val body = message
-                            val mailto = "mailto:youremail@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}"
-                            window.location.href = mailto
-                        }
+                Button(attrs = {
+                    classes("action-button", "action-button-primary")
+                    attr("type", "button")
+                    onClick {
+                        val email = document.getElementById("contact-email")?.asDynamic()?.value ?: ""
+                        val message = document.getElementById("contact-message")?.asDynamic()?.value ?: ""
+                        val subject = "Contact from $email"
+                        val body = message
+                    }
                 }) {
                     Text("Send Message")
                 }
-            }
-        }
 
-        // Resume column
-        Div(Modifier.AttrClasses("resume-column")) {
-            // Link to resume file (adjust path as needed, /resume.pdf assumed)
-            A(href = "/resume.pdf", attrs = {
-                attr("download", "") // hint to download
-            }) {
-                // Use AttrClasses with trailing attrs block on the Button
-                Button(attrs = Modifier.AttrClasses("resume-button") {
-                    attr("type", "button")
+                // "or" divider
+                Div(attrs = { classes("button-divider") }) {
+                    Text("or")
+                }
+
+                // Resume download button
+                A(href = "/resume.pdf", attrs = {
+                    attr("download", "")
+                    classes("action-button", "action-button-secondary")
                 }) {
                     Text("Download Resume")
                 }

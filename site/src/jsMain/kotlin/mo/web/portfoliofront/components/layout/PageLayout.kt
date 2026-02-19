@@ -19,6 +19,7 @@ import com.varabyte.kobweb.core.data.getValue
 import com.varabyte.kobweb.core.layout.Layout
 import kotlinx.browser.document
 import mo.web.portfoliofront.components.sections.Navbar
+import mo.web.portfoliofront.components.sections.FooterSection
 import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.utility.ModClasses
 import org.jetbrains.compose.web.css.LineStyle
@@ -61,6 +62,7 @@ fun PageLayout(
             Div(Modifier.classNames("pageContentStyle").toAttrs()) {
                 content()
             }
+            FooterSection()
         }
     }
 }

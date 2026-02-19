@@ -14,7 +14,7 @@ import org.jetbrains.compose.web.dom.Li
 
 @Composable
 fun Navbar() {
-    Nav(Modifier.AttrClasses("navbar")) {
+    Nav(attrs = { classes("navbar", "fade-in-slow") } ) {
         Link(
             path = Constants.PATH_HOME,
             text = "Owen Peters",
