@@ -6,7 +6,6 @@ import com.varabyte.kobweb.silk.components.icons.fa.FaSquareUpRight
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import mo.web.portfoliofront.infrastructure.models.Project
-import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.utility.ModClasses
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H5
@@ -28,21 +27,23 @@ fun ProjectCard(
             alt = proj.imageURLs[0].alt
         )
 
-        H5() { Text(proj.title) }
+        Div(attrs = { classes("project-card-content") }) {
+            H5() { Text(proj.title) }
 
-        SpanText(
-            text = proj.date,
-            modifier = Modifier.ModClasses("subtle")
-        )
+            SpanText(
+                text = proj.date,
+                modifier = Modifier.ModClasses("subtle")
+            )
 
-        P() { Text(proj.description) }
+            P() { Text(proj.description) }
 
-        Link(
-            path = proj.linkInfo.url,
-            modifier = Modifier.ModClasses("subtle")
-        ) {
-            Text(proj.linkInfo.presentation)
-            FaSquareUpRight(modifier = Modifier)
+            Link(
+                path = proj.linkInfo.url,
+                modifier = Modifier.ModClasses("subtle")
+            ) {
+                Text(proj.linkInfo.presentation)
+                FaSquareUpRight(modifier = Modifier)
+            }
         }
     }
 }

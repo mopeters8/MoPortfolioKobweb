@@ -141,7 +141,6 @@ hr {
     transition: scale 0.3s ease-in-out;
 }
 
-
 #nav-name:hover {
     scale: 1.05;
 }
@@ -158,30 +157,53 @@ hr {
     color: var(--text)
 }
 
+.nav-item.nav-blog {
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-item.nav-blog:hover {
+    color: var(--secondary)
+}
+
+.nav-item.nav-blog > span {
+    font-size: 0.75rem;
+    opacity: 0;
+    margin-left: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-item.nav-blog:hover > span {
+    opacity: 100%;
+}
+
 /* Hero Section */
 
 .hero {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 5rem 0px;
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
+    gap: 1rem;
 }
 
 .hero-image {
-    height: 250px;
-    width: 600px;
+    height: 350px;
+    width: 40%;
     border-radius: 10%;
     object-fit: contain;
     overflow: hidden;
-    padding: 0 1rem;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
+    width: 60%;
+    justify-content: center;
 }
 
 .hero-content h1 {
@@ -198,7 +220,59 @@ hr {
 }
 
 .hero-content p {
-    color: silver
+    color: silver;
+    font-size: 1rem;
+}
+
+.hero-content a {
+    margin-top: 1.5rem;
+    width: fit-content;
+    text-align: center;
+    color: var(--text);
+    opacity: 50%;
+    text-decoration-line: none;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.hero-content a:hover {
+    opacity: 100%;
+    color: var(--secondary);
+    text-decoration-line: underline;
+}
+
+/* Mobile breakpoint for hero */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .hero-image {
+        height: 200px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        flex-shrink: 0;
+    }
+
+    .hero-content {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content h1 span {
+        font-size: 1.6rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
 }
 
 /* Blog Section */

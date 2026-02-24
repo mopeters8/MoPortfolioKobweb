@@ -1,12 +1,15 @@
 package mo.web.portfoliofront.pages
 
 import androidx.compose.runtime.*
+import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.attrsModifier
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
 import com.varabyte.kobweb.core.rememberPageContext
+import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
@@ -84,9 +87,12 @@ fun HomePage() {
 
             P {
                 Text("I’m a full-stack web developer focused on building web software that’s dependable and easy to work with. My background spans frontend interfaces, backend services, and deployment. I visualize the full lifecycle of an application, not just one piece of it.")
-                Br()
-                Br()
-                Text("With experience in teaching, IT support, and freelance work I am comfortable explaining ideas, debugging issues, and working with those who are not developers. I value teams that prioritize clarity, collaboration, and steady improvement over hype.")
+            }
+
+            Link(
+                path = "/about",
+            ) {
+                Text("Learn more about me!")
             }
         }
     }
@@ -104,6 +110,8 @@ fun HomePage() {
             projectList = projects,
             onProjectClick = { openedProject = it }
         )
+
+
     }
 
     Section(attrs = { classes("blog-section", "content-section") }) {
