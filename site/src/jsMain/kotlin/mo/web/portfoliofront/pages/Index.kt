@@ -9,7 +9,6 @@ import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
 import com.varabyte.kobweb.core.rememberPageContext
-import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.dom.Text
 import com.varabyte.kobweb.worker.rememberWorker
@@ -21,6 +20,7 @@ import mo.web.portfoliofront.components.layout.PageLayoutData
 import mo.web.portfoliofront.components.sections.BlogDisplay
 import mo.web.portfoliofront.components.sections.ProjectDisplay
 import mo.web.portfoliofront.components.sections.ContactResume
+import mo.web.portfoliofront.components.widgets.SectionLink
 import mo.web.portfoliofront.infrastructure.FEATURED_PROJECT
 import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
 import mo.web.portfoliofront.infrastructure.models.Project
@@ -89,11 +89,11 @@ fun HomePage() {
                 Text("I’m a full-stack web developer focused on building web software that’s dependable and easy to work with. My background spans frontend interfaces, backend services, and deployment. I visualize the full lifecycle of an application, not just one piece of it.")
             }
 
-            Link(
+            SectionLink(
                 path = "/about",
-            ) {
-                Text("Learn more about me!")
-            }
+                text = "Read More About Me",
+                hoverText = "About Owen"
+            )
         }
     }
 
@@ -111,13 +111,22 @@ fun HomePage() {
             onProjectClick = { openedProject = it }
         )
 
-
+        SectionLink(
+            path = "/projects",
+            text = "View more projects",
+        )
     }
 
     Section(attrs = { classes("blog-section", "content-section") }) {
-        SectionHeader(title = "Blogs", link = "https://blog.owen-peters.com", linkText = "blog.owen-peters.com")
+        SectionHeader(title = "Blogs")
         Hr()
         BlogDisplay(blogList = blogs)
+
+        SectionLink(
+            path = "https://blog.owen-peters.com",
+            text = "View more write ups",
+            hoverText = "blog.owen-peters.com"
+        )
     }
 
     Section(attrs = { classes("contact-section", "content-section") }) {

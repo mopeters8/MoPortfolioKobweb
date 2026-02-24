@@ -224,21 +224,79 @@ hr {
     font-size: 1rem;
 }
 
-.hero-content a {
+.section-link-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin-top: 1.5rem;
-    width: fit-content;
-    text-align: center;
+}
+
+.cta-link-blogs {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text);
-    opacity: 50%;
-    text-decoration-line: none;
-    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    text-decoration: none;
+    padding: 0.1rem 0.75rem;
     transition: all 0.2s ease-in-out;
 }
 
-.hero-content a:hover {
-    opacity: 100%;
+.cta-link-text-swap {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.cta-link-text,
+.cta-link-text-hover {
+    display: inline-block;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    grid-area: 1 / 1;
+}
+
+.cta-link-text-hover {
+    opacity: 0;
+    transform: translateY(2px);
+}
+
+.cta-link-swap:hover .cta-link-text {
+    opacity: 0;
+    transform: translateY(-2px);
+}
+
+.cta-link-swap:hover .cta-link-text-hover {
+    opacity: 1;
+    transform: translateY(0);
     color: var(--secondary);
-    text-decoration-line: underline;
+}
+
+.cta-link-blogs::before,
+.cta-link-blogs::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    height: 1px;
+    background: var(--text);
+    opacity: 0.3;
+}
+
+.cta-link-blogs::before {
+    left: -32px;
+}
+
+.cta-link-blogs::after {
+    right: -32px;
+}
+
+.cta-link-blogs:hover {
+    opacity: 1;
+    color: var(--secondary);
 }
 
 /* Mobile breakpoint for hero */
@@ -529,13 +587,6 @@ hr {
 
     .nav-item {
         font-size: 0.875rem;
-    }
-
-    .blog-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1.25rem;
     }
 
     .blog-readtime {
