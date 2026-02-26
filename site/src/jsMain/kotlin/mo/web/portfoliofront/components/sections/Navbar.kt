@@ -3,9 +3,9 @@ package mo.web.portfoliofront.components.sections
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.id
+import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.icons.fa.FaSquareUpRight
 import com.varabyte.kobweb.silk.components.navigation.Link
-import mo.web.portfoliofront.components.widgets.ThemeToggle
 import mo.web.portfoliofront.utility.AttrClasses
 import mo.web.portfoliofront.utility.Constants
 import mo.web.portfoliofront.utility.ModClasses
@@ -16,6 +16,9 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 fun Navbar() {
+    val pageContext = rememberPageContext()
+    val currentPath = pageContext.route.path
+
     Nav(attrs = { classes("navbar", "fade-in-slow") } ) {
         Link(
             path = Constants.PATH_HOME,
@@ -25,17 +28,27 @@ fun Navbar() {
 
         Ul(Modifier.AttrClasses("nav-items-list")) {
             Li {
+                val aboutClasses = if (currentPath == Constants.PATH_ABOUT) {
+                    "nav-item nav-item--active"
+                } else {
+                    "nav-item"
+                }
                 Link(
                     path = Constants.PATH_ABOUT,
                     text = "/about",
-                    modifier = Modifier.ModClasses("nav-item"),
+                    modifier = Modifier.ModClasses(aboutClasses),
                 )
             }
             Li {
+                val projectClasses = if (currentPath == Constants.PATH_PROJECTS) {
+                    "nav-item nav-item--active"
+                } else {
+                    "nav-item"
+                }
                 Link(
                     path = Constants.PATH_PROJECTS,
                     text = "/projects",
-                    modifier = Modifier.ModClasses("nav-item"),
+                    modifier = Modifier.ModClasses(projectClasses),
                 )
             }
             Li {

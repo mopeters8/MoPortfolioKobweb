@@ -429,8 +429,8 @@
         object-fit: cover;
     }
 
-    .featured-badge {
-        font-size: 0.75rem;
+    .featured-badge span {
+        font-size: 0.65rem;
     }
 
     .project-modal {

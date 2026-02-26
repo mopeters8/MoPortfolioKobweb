@@ -50,7 +50,7 @@ fun HomePage() {
         worker.postInput("Hello, worker!")
     }
 
-    val projects = PROJECTS_LIST
+    val projects = PROJECTS_LIST.take(3) // Show only the first 3 projects on the home page
     val featuredProject = FEATURED_PROJECT
     var openedProject by remember { mutableStateOf<Project?>(null) }
 

@@ -3,6 +3,7 @@ package mo.web.portfoliofront.components.sections
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.browser.uri.encodeURIComponent
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.silk.components.icons.fa.FaDownload
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Form
 import org.jetbrains.compose.web.dom.Input
@@ -10,6 +11,7 @@ import org.jetbrains.compose.web.dom.TextArea
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.Span
 import kotlinx.browser.document
 import kotlinx.browser.window
 import mo.web.portfoliofront.utility.AttrClasses
@@ -23,7 +25,7 @@ fun ContactResume() {
         Div(attrs = {
             classes("contact-message")
         }) {
-            Text("Have a question or opportunity? Drop me a message below, or grab my resume. Either way I appreciate you checking this site out! ^_^")
+            Text("Have a question or opportunity? Drop me a message below, or grab my resume.")
         }
 
         // Use AttrClasses with a trailing attrs block to combine classes + onSubmit
@@ -79,7 +81,13 @@ fun ContactResume() {
                     attr("download", "")
                     classes("action-button", "action-button-secondary")
                 }) {
-                    Text("Download Resume")
+                    Span(attrs = { classes("download-text-full") }) {
+                        Text("Download Resume")
+                    }
+                    Span(attrs = { classes("download-text-mobile") }) {
+                        FaDownload()
+                        Text("Resume")
+                    }
                 }
             }
         }
