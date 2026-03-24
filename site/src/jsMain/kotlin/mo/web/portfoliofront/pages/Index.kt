@@ -25,7 +25,6 @@ import mo.web.portfoliofront.infrastructure.FEATURED_PROJECT
 import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
 import mo.web.portfoliofront.infrastructure.models.Project
 import mo.web.portfoliofront.infrastructure.models.TEST_BLOG_LIST
-import mo.web.portfoliofront.worker.EchoWorker
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
@@ -44,11 +43,11 @@ fun initHomePage(ctx: InitRouteContext) {
 @Composable
 fun HomePage() {
     val context = rememberPageContext()
-    val worker = rememberWorker { EchoWorker { output -> console.log("Echoed: $output") } }
-
-    LaunchedEffect(Unit) {
-        worker.postInput("Hello, worker!")
-    }
+//    val worker = rememberWorker { EchoWorker { output -> console.log("Echoed: $output") } }
+//
+//    LaunchedEffect(Unit) {
+//        worker.postInput("Hello, worker!")
+//    }
 
     val projects = PROJECTS_LIST.take(3) // Show only the first 3 projects on the home page
     val featuredProject = FEATURED_PROJECT

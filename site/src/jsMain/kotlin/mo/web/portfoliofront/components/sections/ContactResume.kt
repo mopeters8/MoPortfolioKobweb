@@ -1,45 +1,93 @@
 package mo.web.portfoliofront.components.sections
 
 import androidx.compose.runtime.Composable
-import com.varabyte.kobweb.browser.uri.encodeURIComponent
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaDownload
+import kotlinx.browser.document
+import mo.web.portfoliofront.infrastructure.email.sendContactEmail
+import mo.web.portfoliofront.utility.AttrClasses
+import mo.web.portfoliofront.utility.Constants.EMAIL_JS_SERVICE_ID
+import mo.web.portfoliofront.utility.Constants.EMAIL_JS_TEMPLATE_ID
+import org.jetbrains.compose.web.attributes.InputType
+import org.jetbrains.compose.web.attributes.onSubmit
+import org.jetbrains.compose.web.dom.A
+import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Form
 import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.TextArea
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.A
-import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.Span
-import kotlinx.browser.document
-import kotlinx.browser.window
-import mo.web.portfoliofront.utility.AttrClasses
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.onSubmit
+import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.TextArea
+import org.w3c.dom.HTMLInputElement
+import org.w3c.dom.HTMLTextAreaElement
 
 @Composable
 fun ContactResume() {
+    var isSending by remember { mutableStateOf(false) }
+    var statusMessage by remember { mutableStateOf<String?>(null) }
+    var isError by remember { mutableStateOf(false) }
+
+    fun handleSubmit() {
+        val name    = (document.getElementById("contact-name") as HTMLInputElement).value
+        val email   = (document.getElementById("contact-email") as HTMLInputElement).value
+        val message = (document.getElementById("contact-message") as HTMLTextAreaElement).value
+
+        isSending = true
+        statusMessage = null
+
+        sendContactEmail(
+            serviceId = EMAIL_JS_SERVICE_ID,
+            templateId = EMAIL_JS_TEMPLATE_ID,
+            name = name,
+            email = email,
+            message = message,
+            onSuccess = {
+                isSending = false
+                isError = false
+                statusMessage = "Message sent! I'll get back to you soon."
+            },
+            onError = { err ->
+                isSending = false
+                isError = true
+                statusMessage = "Something went wrong: $err"
+            }
+        )
+    }
+
     Div(Modifier.AttrClasses("contact-resume-container")) {
         // Welcoming message
-        Div(attrs = {
-            classes("contact-message")
-        }) {
+        Div(attrs = { classes("contact-message") }) {
             Text("Have a question or opportunity? Drop me a message below, or grab my resume.")
         }
 
-        // Use AttrClasses with a trailing attrs block to combine classes + onSubmit
         Form(attrs = {
             classes("contact-form")
-            onSubmit { it.preventDefault() } // avoid page reload
+            onSubmit {
+                it.preventDefault()
+                handleSubmit()
+            }
         }) {
-            // Email input
-            Div(Modifier.AttrClasses("form-row")) {
+            // Name + Email row
+            Div(Modifier.AttrClasses("form-row form-row-split")) {
+                Input(
+                    attrs = {
+                        classes("contact-input")
+                        id("contact-name")
+                        attr("placeholder", "Your name")
+                        attr("required", "")
+                    },
+                    type = InputType.Text
+                )
                 Input(
                     attrs = {
                         classes("contact-input")
                         id("contact-email")
                         attr("placeholder", "you@example.com")
+                        attr("required", "")
                     },
                     type = InputType.Email
                 )
@@ -55,20 +103,23 @@ fun ContactResume() {
                 })
             }
 
-            // Button row container
+            // Status message (success / error)
+            statusMessage?.let { msg ->
+                Div(attrs = {
+                    classes("contact-status", if (isError) "contact-status-error" else "contact-status-success")
+                }) {
+                    Text(msg)
+                }
+            }
+
+            // Button row
             Div(Modifier.AttrClasses("button-row")) {
-                // Submit button: constructs mailto: with provided values
                 Button(attrs = {
                     classes("action-button", "action-button-primary")
-                    attr("type", "button")
-                    onClick {
-                        val email = document.getElementById("contact-email")?.asDynamic()?.value ?: ""
-                        val message = document.getElementById("contact-message")?.asDynamic()?.value ?: ""
-                        val subject = "Contact from $email"
-                        val body = message
-                    }
+                    attr("type", "submit")
+                    if (isSending) attr("disabled", "")
                 }) {
-                    Text("Send Message")
+                    Text(if (isSending) "Sending..." else "Send Message")
                 }
 
                 // "or" divider
@@ -77,7 +128,7 @@ fun ContactResume() {
                 }
 
                 // Resume download button
-                A(href = "/resume.pdf", attrs = {
+                A(href = "/OwenPetersResume.pdf", attrs = {
                     attr("download", "")
                     classes("action-button", "action-button-secondary")
                 }) {

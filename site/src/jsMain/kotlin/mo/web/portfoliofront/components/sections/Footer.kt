@@ -20,7 +20,7 @@ fun FooterSection() {
         Div(attrs = {
             classes("footer-copyright")
         }) {
-            Text("© 2024 Owen Peters. All rights reserved.")
+            Text("© 2026 Owen Peters. All rights reserved.")
         }
 
         Div(Modifier.AttrClasses("footer-social-row")) {

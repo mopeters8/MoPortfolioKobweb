@@ -475,7 +475,6 @@ hr {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
 }
 
 .contact-form .form-row {
@@ -504,6 +503,33 @@ hr {
     transition: all 0.2s ease;
     outline: 2px solid var(--primary);
     outline-offset: 2px;
+}
+
+.form-row-split {
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+}
+
+.form-row-split .contact-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-status {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.contact-status-success {
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.contact-status-error {
+    color: oklch(70% 0.18 25);
+    background: color-mix(in srgb, oklch(70% 0.18 25) 12%, transparent);
 }
 
 .button-row {
@@ -543,6 +569,11 @@ hr {
 .action-button-primary:hover {
     background: var(--primary);
     color: var(--background);
+}
+
+.action-button-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .action-button-secondary {
@@ -650,6 +681,10 @@ hr {
         min-width: auto;
         text-align: left;
         font-size: 0.85rem;
+    }
+
+    .form-row-split {
+        flex-direction: column !important;
     }
 
     .download-text-full {

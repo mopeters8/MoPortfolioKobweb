@@ -1,6 +1,7 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobweb.gradle.core.util.importCss
 import kotlinx.html.link
+import kotlinx.html.script
 import kotlinx.html.style
 
 plugins {
@@ -26,6 +27,10 @@ kobweb {
                 link(rel = "preconnect", href = "https://fonts.gstatic.com")
                 link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap")
 
+                script {
+                    src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+                    type = "text/javascript"
+                }
             }
         }
     }
