@@ -6,16 +6,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.classNames
+import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
+import com.varabyte.kobweb.silk.components.text.SpanText
 import kotlinx.coroutines.delay
 import mo.web.portfoliofront.components.layout.AboutPersonalView
 import mo.web.portfoliofront.components.layout.AboutProfessionalView
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.H1
+import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
@@ -45,7 +51,8 @@ fun AboutPage() {
     }
 
     val modeClass = if (isPersonal) "about-mode--personal" else "about-mode--professional"
-    val contentClass = if (isTransitioning) "about-page-content about-page-content--hidden" else "about-page-content"
+//    val contentClass = if (isTransitioning) "about-page-content about-page-content--hidden" else "about-page-content"
+    val contentClass = "about-page-content"
 
     // Floating toggle
     Div(attrs = { classes("about-toggle-row", modeClass) }) {
@@ -76,10 +83,34 @@ fun AboutPage() {
 
     // Page content
     Div(attrs = { classes(*contentClass.split(" ").toTypedArray()) }) {
-        if (displayPersonal) {
-            AboutPersonalView()
-        } else {
-            AboutProfessionalView()
-        }
+        SectionSwapper(
+            displayPersonal = displayPersonal,
+            isPersonal = isPersonal,
+            isTransitioning = isTransitioning
+        )
+    }
+}
+
+@Composable
+fun SectionSwapper(
+    displayPersonal: Boolean,
+    isPersonal: Boolean,
+    isTransitioning: Boolean,
+) {
+    val modeClass = if (displayPersonal) "switcher-header--personal" else "switcher-header--professional"
+    val contentClass = if (isTransitioning) "about-page-content about-page-content--hidden" else "about-page-content"
+    val labelText = if (displayPersonal) "TEST1" else "TEST2"
+
+    H1(attrs = { classes("switcher-header", modeClass)}) {
+        SpanText("O")
+        SpanText(labelText, modifier = Modifier.id("o").classNames(*contentClass.split(" ").toTypedArray()))
+        SpanText("P")
+        SpanText(labelText, modifier = Modifier.id("p").classNames(*contentClass.split(" ").toTypedArray()))
+    }
+
+    if (displayPersonal) {
+        AboutPersonalView() {}
+    } else {
+        AboutProfessionalView() {}
     }
 }

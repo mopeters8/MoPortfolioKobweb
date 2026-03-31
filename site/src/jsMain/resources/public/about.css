@@ -79,7 +79,7 @@
     transform: translateY(0);
 }
 
-/* ─── Switch track & thumb ───────────────────────────────────────────────── */
+/* Switch track & thumb */
 
 .about-toggle-switch {
     position: relative;
@@ -130,4 +130,75 @@
     opacity: 0;
     transform: translateY(6px);
     pointer-events: none;
+}
+
+/* Fancy O Header Movement */
+.about-hero {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5rem 0px;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    gap: 1rem;
+}
+
+.about-hero-image {
+    height: 350px;
+    width: 40%;
+    border-radius: 10%;
+    object-fit: contain;
+    overflow: hidden;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.about-hero-content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+}
+
+.about-hero-content h1 {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+    margin-bottom: 16px;
+}
+
+.about-hero-content h1 span {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+}
+
+.about-hero-content p {
+    color: silver;
+    font-size: 1rem;
+}
+
+.switcher-header--personal #o,
+.switcher-header--personal #p {
+    color: blue;
+/*    the process*/
+}
+
+.switcher-header--professional #o,
+.switcher-header--professional #p {
+    color: red;
+/*    the practice*/
+}
+
+.switcher-header--personal span {
+    transition: 0.8s ease-in-out;
+    color: var(--primary)
+}
+
+.switcher-header--professional span {
+    transition: 0.8s ease-in-out;
+    color: var(--secondary)
 }

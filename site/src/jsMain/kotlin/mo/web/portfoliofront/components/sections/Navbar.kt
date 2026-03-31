@@ -2,6 +2,7 @@ package mo.web.portfoliofront.components.sections
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.attrsModifier
 import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.icons.fa.FaSquareUpRight
@@ -51,14 +52,17 @@ fun Navbar() {
                     modifier = Modifier.ModClasses(projectClasses),
                 )
             }
+            val blogClasses = if (currentPath == Constants.LINK_BLOG) {
+                "nav-item nav-item--active"
+            } else {
+                "nav-item"
+            }
             Li {
                 Link(
-                    path = Constants.LINK_BLOG,
-                    modifier = Modifier.ModClasses("nav-item nav-blog"),
-                ) {
-                    Text("blog.")
-                    FaSquareUpRight()
-                }
+                    text = "/blog",
+                    path = Constants.PATH_BLOG,
+                    modifier = Modifier.attrsModifier { classes(*blogClasses.split(" ").toTypedArray()) },
+                )
             }
         }
     }
