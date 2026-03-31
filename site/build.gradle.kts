@@ -22,6 +22,7 @@ kobweb {
                 link(rel = "stylesheet", href = "/reset.css")
                 link(rel = "stylesheet", href = "/styles.css")
                 link(rel = "stylesheet", href = "/projects.css")
+                link(rel = "stylesheet", href = "/about.css")
 
                 link(rel = "preconnect", href = "https://fonts.googleapis.com")
                 link(rel = "preconnect", href = "https://fonts.gstatic.com")

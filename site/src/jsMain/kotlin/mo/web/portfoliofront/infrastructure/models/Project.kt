@@ -41,4 +41,12 @@ enum class Technologies(val iconUrl: String) {
     POCKETBASE("/icons/pocketbase.svg"),
     MONGODB("/icons/mongodb.svg"),
     BOOTSTRAP("/icons/Bootstrap.svg"),
+    NEXTJS("/icons/NextJs.svg"),
+    SUPABASE("/icons/Supabase.svg");
+
+    companion object {
+        fun getTechnologyFilters(): List<Technologies> {
+            return listOf<Technologies>(KOTLIN, KOBWEB, KTOR, POCKETBASE, NEXTJS, SUPABASE)
+        }
+    }
 }

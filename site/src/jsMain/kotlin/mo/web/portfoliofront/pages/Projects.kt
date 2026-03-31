@@ -41,9 +41,7 @@ fun ProjectsPage() {
     var openedProject by remember { mutableStateOf<Project?>(null) }
     var activeFilter by remember { mutableStateOf<Technologies?>(null) }
 
-    val allTechnologies = remember {
-        allProjects.flatMap { it.technologies }.distinct()
-    }
+    val allTechnologies = remember { Technologies.getTechnologyFilters() }
 
     val filteredProjects = if (activeFilter == null) allProjects
     else allProjects.filter { it.technologies.contains(activeFilter) }
@@ -66,17 +64,19 @@ fun ProjectsPage() {
         P(attrs = { classes("projects-hero-desc") }) {
             Text("A collection of things I've built — from full-stack web apps to smaller experiments.")
         }
-        Div(attrs = { classes("projects-stats") }) {
-            Div(attrs = { classes("projects-stat") }) {
-                SpanText(text = "${allProjects.size}", modifier = Modifier.ModClasses("projects-stat-number"))
-                SpanText(text = "Projects", modifier = Modifier.ModClasses("projects-stat-label"))
-            }
-            Div(attrs = { classes("projects-stat-divider") }) {}
-            Div(attrs = { classes("projects-stat") }) {
-                SpanText(text = "${allTechnologies.size}", modifier = Modifier.ModClasses("projects-stat-number"))
-                SpanText(text = "Technologies", modifier = Modifier.ModClasses("projects-stat-label"))
-            }
-        }
+
+        // TODO: Decide if I want to list total projects, total technologies.
+//        Div(attrs = { classes("projects-stats") }) {
+//            Div(attrs = { classes("projects-stat") }) {
+//                SpanText(text = "${allProjects.size}", modifier = Modifier.ModClasses("projects-stat-number"))
+//                SpanText(text = "Projects", modifier = Modifier.ModClasses("projects-stat-label"))
+//            }
+//            Div(attrs = { classes("projects-stat-divider") }) {}
+//            Div(attrs = { classes("projects-stat") }) {
+//                SpanText(text = "${allTechnologies.size}", modifier = Modifier.ModClasses("projects-stat-number"))
+//                SpanText(text = "Technologies", modifier = Modifier.ModClasses("projects-stat-label"))
+//            }
+//        }
     }
 
     // Featured project
