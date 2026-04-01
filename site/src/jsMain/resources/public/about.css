@@ -181,24 +181,84 @@
     font-size: 1rem;
 }
 
-.switcher-header--personal #o,
-.switcher-header--personal #p {
-    color: blue;
-/*    the process*/
+/* Hero heading letter/text transitions */
+
+.switcher-header {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+    line-height: 1;
+    margin-bottom: 1rem;
+    white-space: nowrap;
 }
 
-.switcher-header--professional #o,
-.switcher-header--professional #p {
-    color: red;
-/*    the practice*/
+/* O and P — always visible, color fades between modes */
+.about-hero-letter {
+    display: inline;
+    transition: color 0.5s ease;
 }
 
-.switcher-header--personal span {
-    transition: 0.8s ease-in-out;
-    color: var(--primary)
+.switcher-header--professional .about-hero-letter {
+    color: var(--secondary);
 }
 
-.switcher-header--professional span {
-    transition: 0.8s ease-in-out;
-    color: var(--secondary)
+.switcher-header--personal .about-hero-letter {
+    color: var(--primary);
+}
+
+/* Variable text parts inside the hero H1 — inline-block required for transforms */
+.about-hero-text {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Subtitle below hero heading */
+.about-hero-subtitle {
+    font-size: 1rem;
+    color: silver;
+    margin-bottom: 1.5rem;
+}
+
+/*
+    ========================================================
+                    END OF FANCY HERO WORK
+    ========================================================
+*/
+
+/* Section fade in/out on view switch */
+
+@keyframes u-fade-enter {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes u-fade-exit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+.u-fade {
+    animation: u-fade-enter 0.55s ease forwards;
+}
+
+.u-fade--hidden {
+    animation: u-fade-exit 0.4s ease forwards;
+    pointer-events: none;
+}
+
+.about-intro-paragraph {
+    color: silver;
+    font-size: 1rem;
 }

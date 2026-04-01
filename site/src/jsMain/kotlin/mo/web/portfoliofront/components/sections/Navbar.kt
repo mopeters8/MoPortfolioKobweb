@@ -52,15 +52,27 @@ fun Navbar() {
                     modifier = Modifier.ModClasses(projectClasses),
                 )
             }
-            val blogClasses = if (currentPath == Constants.LINK_BLOG) {
-                "nav-item nav-item--active"
-            } else {
-                "nav-item"
-            }
             Li {
+                val blogClasses = if (currentPath == Constants.PATH_BLOG) {
+                    "nav-item nav-item--active"
+                } else {
+                    "nav-item"
+                }
                 Link(
                     text = "/blog",
                     path = Constants.PATH_BLOG,
+                    modifier = Modifier.attrsModifier { classes(*blogClasses.split(" ").toTypedArray()) },
+                )
+            }
+            Li {
+                val blogClasses = if (currentPath == Constants.PATH_PHOTOS) {
+                    "nav-item nav-item--active"
+                } else {
+                    "nav-item"
+                }
+                Link(
+                    text = "/photos",
+                    path = Constants.PATH_PHOTOS,
                     modifier = Modifier.attrsModifier { classes(*blogClasses.split(" ").toTypedArray()) },
                 )
             }

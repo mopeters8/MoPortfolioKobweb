@@ -6,22 +6,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.classNames
-import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
-import com.varabyte.kobweb.silk.components.text.SpanText
 import kotlinx.coroutines.delay
 import mo.web.portfoliofront.components.layout.AboutPersonalView
 import mo.web.portfoliofront.components.layout.AboutProfessionalView
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
-import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
@@ -45,7 +40,7 @@ fun AboutPage() {
             return@LaunchedEffect
         }
         isTransitioning = true
-        delay(250)
+        delay(400)
         displayPersonal = isPersonal
         isTransitioning = false
     }
@@ -86,7 +81,7 @@ fun AboutPage() {
         SectionSwapper(
             displayPersonal = displayPersonal,
             isPersonal = isPersonal,
-            isTransitioning = isTransitioning
+            isTransitioning = isTransitioning,
         )
     }
 }
@@ -97,20 +92,31 @@ fun SectionSwapper(
     isPersonal: Boolean,
     isTransitioning: Boolean,
 ) {
-    val modeClass = if (displayPersonal) "switcher-header--personal" else "switcher-header--professional"
-    val contentClass = if (isTransitioning) "about-page-content about-page-content--hidden" else "about-page-content"
-    val labelText = if (displayPersonal) "TEST1" else "TEST2"
+    val modeClass = if (isPersonal) "switcher-header--personal" else "switcher-header--professional"
+    val fadeList = if (isTransitioning) arrayOf("u-fade", "u-fade--hidden") else arrayOf("u-fade")
 
-    H1(attrs = { classes("switcher-header", modeClass)}) {
-        SpanText("O")
-        SpanText(labelText, modifier = Modifier.id("o").classNames(*contentClass.split(" ").toTypedArray()))
-        SpanText("P")
-        SpanText(labelText, modifier = Modifier.id("p").classNames(*contentClass.split(" ").toTypedArray()))
+    H1(attrs = { classes("switcher-header", modeClass) }) {
+        Span(attrs = { classes("about-hero-letter") }) { Text("O") }
+        Span(attrs = { classes("about-hero-text", *fadeList) }) {
+            if (displayPersonal) Text("utside the\u00A0") else Text("wning the\u00A0")
+        }
+        Span(attrs = { classes("about-hero-letter") }) { Text("P") }
+        Span(attrs = { classes("about-hero-text", *fadeList) }) {
+            if (displayPersonal) Text("ractice") else Text("rocess")
+        }
+    }
+
+    Div(attrs = { classes("about-hero-subtitle", *fadeList) }) {
+        if (displayPersonal) {
+            Text("Take a look at my interests and hobbies.")
+        } else {
+            Text("Take a look at my track record and my aspirations for the future.")
+        }
     }
 
     if (displayPersonal) {
-        AboutPersonalView() {}
+        AboutPersonalView(isTransitioning = isTransitioning)
     } else {
-        AboutProfessionalView() {}
+        AboutProfessionalView(isTransitioning = isTransitioning)
     }
 }

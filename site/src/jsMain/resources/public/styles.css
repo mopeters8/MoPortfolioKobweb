@@ -160,6 +160,7 @@ hr {
 }
 
 .nav-items-list .nav-item {
+    white-space: nowrap;
     position: relative;
     text-decoration: none;
     display: inline-flex;
