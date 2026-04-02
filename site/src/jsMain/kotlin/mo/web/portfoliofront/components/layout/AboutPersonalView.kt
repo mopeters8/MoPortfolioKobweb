@@ -12,7 +12,7 @@ fun AboutPersonalView(
     val fadeClass = if (isTransitioning) "u-fade u-fade--hidden" else "u-fade"
     val fadeList = fadeClass.split(" ").toTypedArray()
 
-    Section(attrs = { classes(*fadeList, "about-intro-paragraph") }) {
+    Section(attrs = { classes(*fadeList, "about-paragraph") }) {
         P {
             Text("THIS ABOUT ME NOW")
         }

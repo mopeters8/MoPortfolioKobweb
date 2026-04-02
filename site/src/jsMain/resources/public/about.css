@@ -219,12 +219,6 @@
     margin-bottom: 1.5rem;
 }
 
-/*
-    ========================================================
-                    END OF FANCY HERO WORK
-    ========================================================
-*/
-
 /* Section fade in/out on view switch */
 
 @keyframes u-fade-enter {
@@ -258,7 +252,97 @@
     pointer-events: none;
 }
 
+/*
+    ========================================================
+                    END OF FANCY HEADER STUFF
+                    - More General Page styles here
+    ========================================================
+*/
+
+.about-title {
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+}
+
+.about-subtitle {
+    color: silver;
+    font-size: 1.5rem;
+    margin: 0px;
+}
+
+.about-paragraph {
+    font-size: 1rem;
+    margin: 8px 0px;
+}
+
+/*
+    ========================================================
+                    ABOUT LOCATION SECTION
+    ========================================================
+*/
+
 .about-intro-paragraph {
     color: silver;
     font-size: 1rem;
+}
+
+.about-location-section {
+
+}
+
+.about-location-header {
+    position: relative;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.about-location-header .about-title {
+    margin-bottom: 16px;
+}
+
+.about-location-header .about-paragraph {
+    font-size: 1.15rem;
+    margin: 16px 0px;
+    width: min(100%, 500px);
+    text-align: justify;
+}
+
+.about-ascii-art {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.about-subtitle,
+.about-title {
+    position: relative;
+    z-index: 1;
+}
+
+.bridge-ascii-art {
+    font-family: "Courier New", Courier, monospace;
+    white-space: pre;
+    line-height: 1.2;
+    font-size: 18px;
+    opacity: 60%;
+    color: dimgrey;
+    padding: 20px 10px;
+}
+
+/*
+    ========================================================
+                    EXPERIENCES SECTION
+    ========================================================
+*/
+
+.about-events-section {
+
 }
