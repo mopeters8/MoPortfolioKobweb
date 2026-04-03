@@ -2,21 +2,31 @@ package mo.web.portfoliofront.components.layout
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.attrsModifier
 import com.varabyte.kobweb.compose.ui.modifiers.margin
-import com.varabyte.kobweb.silk.components.icons.fa.FaBriefcase
 import com.varabyte.kobweb.silk.components.icons.fa.FaLocationDot
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.sections.ContactResume
 import mo.web.portfoliofront.components.widgets.BridgeAscii
+import mo.web.portfoliofront.utility.CONSTANTS
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H2
+import org.jetbrains.compose.web.dom.H3
 import org.jetbrains.compose.web.dom.Hr
+import org.jetbrains.compose.web.dom.Li
+import org.jetbrains.compose.web.dom.Ol
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Section
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.Ul
+
+data class KeyEvent(
+    val date: String,
+    val title: String,
+    val description: String,
+)
 
 @Composable
 fun AboutProfessionalView(
@@ -74,7 +84,7 @@ fun AboutProfessionalView(
         }
         Hr()
 
-
+        KeyEventsSection()
     }
 
     Section(attrs = { classes(*fadeList, "about-events-section", "sec-pad") }) {
@@ -93,7 +103,34 @@ fun AboutProfessionalView(
         ContactResume()
     }
 
-
-
-    // TODO: add interests, hobbies, and personal sections
 }
+
+@Composable
+fun KeyEventsSection() {
+    Ul( attrs = { classes("about-key-list") } ) {
+        KEY_EVENTS
+            .take(CONSTANTS.KEY_EVENTS_TOTAL_PREVIEW)
+            .forEach { event ->
+                Li({ classes("about-key-item")} ) {
+                    Span { Text(event.date) }
+                    H3 { Text(event.title) }
+                    P { Text(event.description)}
+                }
+            }
+    }
+}
+
+val KEY_EVENTS = listOf<KeyEvent>(
+    KeyEvent("March, 2024 – October, 2025", "Full-Stack Engineer at Green Rebates",
+        description = "Developed internal tools and SEO-optimized web platforms using Kotlin (Ktor/Kobweb), React, and PostgreSQL, while managing production deployments and integrating analytics, authentication, and automation systems."
+    ),
+    KeyEvent("June, 2023 – May, 2024", "Lead Instructor at Mission Bit",
+        description = "Led web development instruction in HTML, CSS, and JavaScript while designing workshops and guiding students through capstone projects that earned recognition."
+    ),
+    KeyEvent("May, 2023", "Graduated from University of San Francisco",
+        description = "Earned a Bachelor of Science in Computer Science, culminating in the development of a full-stack web application as a capstone project."
+    ),
+    KeyEvent("August, 2022 – May, 2023", "Help Desk Technician at University of San Francisco",
+        description = "Provided frontline technical support for hardware and software issues and acted as a key responder during a campus-wide outage, helping restore critical infrastructure."
+    )
+)

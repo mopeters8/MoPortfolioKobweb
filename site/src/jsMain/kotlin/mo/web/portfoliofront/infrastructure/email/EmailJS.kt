@@ -1,7 +1,5 @@
 package mo.web.portfoliofront.infrastructure.email
 
-import mo.web.portfoliofront.utility.Constants.EMAIL_JS_SERVICE_ID
-
 private external val emailjs: dynamic
 
 fun initEmailJS(publicKey: String) {

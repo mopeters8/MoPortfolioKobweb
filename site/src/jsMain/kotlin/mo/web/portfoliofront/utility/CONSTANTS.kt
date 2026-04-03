@@ -1,6 +1,6 @@
 package mo.web.portfoliofront.utility
 
-object Constants {
+object CONSTANTS {
 
     const val PATH_HOME = "/"
     const val PATH_ABOUT = "/about"
@@ -13,4 +13,5 @@ object Constants {
     const val EMAIL_JS_SERVICE_ID = "service_xxqsr76"
     const val EMAIL_JS_TEMPLATE_ID = "template_a65pbd5"
 
+    const val KEY_EVENTS_TOTAL_PREVIEW = 6;
 }

@@ -9,7 +9,7 @@ import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
 import mo.web.portfoliofront.infrastructure.email.initEmailJS
-import mo.web.portfoliofront.utility.Constants
+import mo.web.portfoliofront.utility.CONSTANTS
 
 @InitSilk
 fun initStyles(ctx: InitSilkContext) {
@@ -20,7 +20,7 @@ fun initStyles(ctx: InitSilkContext) {
 @Composable
 fun AppEntry(content: @Composable () -> Unit) {
     LaunchedEffect(Unit) {
-        initEmailJS(Constants.EMAIL_JS_PUBLIC_KEY)
+        initEmailJS(CONSTANTS.EMAIL_JS_PUBLIC_KEY)
     }
 
     SilkApp {

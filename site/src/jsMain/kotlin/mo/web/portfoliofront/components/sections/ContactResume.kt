@@ -10,8 +10,8 @@ import com.varabyte.kobweb.silk.components.icons.fa.FaDownload
 import kotlinx.browser.document
 import mo.web.portfoliofront.infrastructure.email.sendContactEmail
 import mo.web.portfoliofront.utility.AttrClasses
-import mo.web.portfoliofront.utility.Constants.EMAIL_JS_SERVICE_ID
-import mo.web.portfoliofront.utility.Constants.EMAIL_JS_TEMPLATE_ID
+import mo.web.portfoliofront.utility.CONSTANTS.EMAIL_JS_SERVICE_ID
+import mo.web.portfoliofront.utility.CONSTANTS.EMAIL_JS_TEMPLATE_ID
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.onSubmit
 import org.jetbrains.compose.web.dom.A
