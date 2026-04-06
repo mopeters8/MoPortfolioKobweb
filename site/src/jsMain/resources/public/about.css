@@ -17,8 +17,8 @@
     flex-direction: row;
     align-items: center;
     gap: 0.875rem;
-    background: color-mix(in srgb, var(--background) 75%, transparent);
-    backdrop-filter: blur(12px);
+/*    background: color-mix(in srgb, var(--background) 75%, transparent);*/
+/*    backdrop-filter: blur(12px);*/
     pointer-events: all;
     user-select: none;
 }
@@ -411,4 +411,59 @@
 
 .about-key-item p {
     font-size: 0.875rem;
+}
+
+/*
+    ========================================================
+                    TECHNICAL SKILLS SECTION
+    ========================================================
+*/
+
+.skill-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0.75rem;
+}
+
+.skill-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.75rem 0.3rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+    background: var(--background-hover);
+    white-space: nowrap;
+    transition: border-color 0.18s ease, background 0.18s ease;
+    cursor: default;
+}
+
+.skill-chip:hover {
+    border-color: var(--secondary);
+}
+
+.skill-chip:hover .skill-chip-name {
+    color: var(--secondary);
+}
+
+.skill-chip-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 2px;
+}
+
+.skill-chip-name {
+    font-size: 0.8rem;
+    color: var(--text);
+    transition: color 0.18s ease;
 }

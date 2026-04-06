@@ -46,7 +46,6 @@ fun AboutPage() {
     }
 
     val modeClass = if (isPersonal) "about-mode--personal" else "about-mode--professional"
-//    val contentClass = if (isTransitioning) "about-page-content about-page-content--hidden" else "about-page-content"
     val contentClass = "about-page-content"
 
     // Floating toggle
