@@ -107,7 +107,7 @@ fun SectionSwapper(
 
     Div(attrs = { classes("about-hero-subtitle", *fadeList) }) {
         if (displayPersonal) {
-            Text("Take a look at my interests and hobbies.")
+            Text("Avid PC Enthusiast, Gamer, Explorer and Sports player.")
         } else {
             Text("Take a look at my track record and my aspirations for the future.")
         }
