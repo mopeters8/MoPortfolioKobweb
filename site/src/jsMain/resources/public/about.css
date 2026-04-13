@@ -467,3 +467,195 @@
     color: var(--text);
     transition: color 0.18s ease;
 }
+
+/*
+    ========================================================
+                    HOBBY CARDS SECTION
+    ========================================================
+*/
+
+.hobby-cards-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.hobby-card {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 240px;
+    position: relative;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+    background: var(--background-hover);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Gradient overlay — fades in on hover */
+.hobby-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--primary) 55%, transparent),
+        color-mix(in srgb, var(--secondary) 35%, var(--background))
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    z-index: 0;
+}
+
+.hobby-card:hover::before {
+    opacity: 1;
+}
+
+/* Icon — centered by default, moves to top on hover */
+.hobby-card-icon-wrap {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    font-size: 2.25rem;
+    color: color-mix(in srgb, var(--text) 28%, transparent);
+    z-index: 1;
+    line-height: 1;
+    transition:
+        top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        font-size 0.4s ease,
+        color 0.4s ease;
+}
+
+.hobby-card:hover .hobby-card-icon-wrap {
+    top: 1.5rem;
+    transform: translate(-50%, 0);
+    font-size: 1.5rem;
+    color: var(--text);
+}
+
+/* Title — below icon near bottom, disappears on hover */
+.hobby-card-title {
+    position: absolute;
+    bottom: 3.25rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hobby-card:hover .hobby-card-title {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+}
+
+/* Description preview — small slice at bottom, fades out on hover */
+.hobby-card-desc-preview {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--text) 50%, transparent);
+    max-height: 2.5rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.hobby-card:hover .hobby-card-desc-preview {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Description full — centered, hidden default, reveals on hover */
+.hobby-card-desc-full {
+    position: absolute;
+    top: 4rem;
+    bottom: 2.75rem;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0 1.25rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    text-align: center;
+    color: color-mix(in srgb, var(--text) 90%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    opacity: 0;
+    transform: translateY(10px);
+    z-index: 1;
+    transition: opacity 0.4s ease 0.06s, transform 0.4s ease 0.06s;
+}
+
+.hobby-card:hover .hobby-card-desc-full {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Link — bottom center, hidden default, reveals on hover */
+.hobby-card-link {
+    position: absolute;
+    bottom: 0.875rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    color: var(--secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.3s ease 0.15s;
+}
+
+.hobby-card:hover .hobby-card-link {
+    opacity: 1;
+}
+
+.hobby-card-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile: horizontal scroll with right-edge fade hint */
+@media (max-width: 720px) {
+    .hobby-cards-row {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+        padding-right: 3rem;
+        -webkit-mask-image: linear-gradient(to right, black 78%, transparent 100%);
+        mask-image: linear-gradient(to right, black 78%, transparent 100%);
+    }
+
+    .hobby-cards-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hobby-card {
+        flex: none;
+        width: 72vw;
+        max-width: 260px;
+    }
+}
