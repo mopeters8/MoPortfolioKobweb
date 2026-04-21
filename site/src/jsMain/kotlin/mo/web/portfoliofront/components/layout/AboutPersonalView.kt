@@ -9,13 +9,23 @@ import com.varabyte.kobweb.silk.components.icons.fa.FaGamepad
 import com.varabyte.kobweb.silk.components.icons.fa.FaMusic
 import com.varabyte.kobweb.silk.components.icons.fa.FaSquareUpRight
 import com.varabyte.kobweb.silk.components.navigation.Link
-import org.jetbrains.compose.web.dom.A
+import mo.web.portfoliofront.components.GameCard
+import mo.web.portfoliofront.components.sections.BlogDisplay
+import mo.web.portfoliofront.components.widgets.SectionLink
+import mo.web.portfoliofront.infrastructure.data.BLOG_LIST
+import mo.web.portfoliofront.infrastructure.data.FEATURED_GAMES
+import mo.web.portfoliofront.infrastructure.data.MUSIC_LIST
+import mo.web.portfoliofront.infrastructure.data.SPORTS_TEAMS_LIST
+import mo.web.portfoliofront.infrastructure.models.SportsTeam
+import mo.web.portfoliofront.infrastructure.models.personalBlogs
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H2
 import org.jetbrains.compose.web.dom.H5
 import org.jetbrains.compose.web.dom.Hr
+import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Section
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
@@ -47,6 +57,45 @@ private fun HobbyCard(
             if (isExternal) {
                 FaSquareUpRight(modifier = Modifier)
             }
+        }
+    }
+}
+
+@Composable
+private fun TeamCard(team: SportsTeam) {
+    // Append hex alpha to team colors: b3 ≈ 70%, 80 ≈ 50%
+    val gradientStyle = "background: linear-gradient(145deg, ${team.primaryColor}b3, ${team.secondaryColor}80)"
+
+    Div(attrs = {
+        classes("team-card")
+        attr("style", gradientStyle)
+    }) {
+        // Personal photo — fades in on hover if provided
+        team.secondImage?.let { src ->
+            Img(
+                src = src,
+                alt = "${team.name} personal photo",
+                attrs = { classes("team-card-secondary-img") }
+            )
+        }
+
+        // Logo — centered by default, slides to top-center on hover
+        Img(
+            src = team.logoPath,
+            alt = "${team.name} logo",
+            attrs = { classes("team-card-logo") }
+        )
+
+        // Name + sport label — visible by default, fades out on hover
+        Div(attrs = { classes("team-card-meta") }) {
+            P(attrs = { classes("team-card-name") }) { Text(team.name) }
+            P(attrs = { classes("team-card-sport") }) { Text(team.sport) }
+        }
+
+        // Description — hidden by default, fades in on hover
+        Div(attrs = { classes("team-card-description") }) {
+            P(attrs = { classes("team-card-description-name") }) { Text(team.name) }
+            P { Text(team.description) }
         }
     }
 }
@@ -97,7 +146,7 @@ fun AboutPersonalView(
             HobbyCard(
                 title = "Gaming",
                 description = "PC, console, card games, servers — I am game for all of it. Avid PC enthusiast with a PC building side hustle. Check out my favorites!",
-                linkUrl = "#gaming",
+                linkUrl = "#games",
                 linkText = "Favorite Games"
             ) {
                 FaGamepad(modifier = Modifier)
@@ -115,41 +164,34 @@ fun AboutPersonalView(
 
     Section(attrs = { classes(*fadeList, "about-blog-section", "sec-pad") }) {
         H2({
-            id("hobbies")
+            id("blog")
             classes("section-header")
         }) {
             Text("Blog")
         }
         Hr()
 
-        /*
-            Design: Like other Blog Section
+        BlogDisplay(blogList = BLOG_LIST.personalBlogs())
 
-            - Why I keep changing Blogs
-            - Disc Golf: How its affected me
-            -
-         */
+        SectionLink(
+            path = "/blog",
+            text = "View more write ups",
+            hoverText = "/blogs"
+        )
     }
 
     Section(attrs = { classes(*fadeList, "about-teams-section", "sec-pad") }) {
         H2({
-            id("hobbies")
+            id("teams")
             classes("section-header")
         }) {
             Text("Favorite Sports Teams")
         }
         Hr()
 
-        /*
-            Design:
-
-            - Raiders
-            - Warriors
-            - MLS: Earthquakes
-            - Premiere League: Liverpool
-            - Gaming: Optic Gaming
-            - Disc Golf: Gannon Buhr
-         */
+        Div(attrs = { classes("team-cards-row") }) {
+            SPORTS_TEAMS_LIST.forEach { team -> TeamCard(team) }
+        }
     }
 
     Section(attrs = { classes(*fadeList, "about-games-section", "sec-pad") }) {
@@ -160,17 +202,16 @@ fun AboutPersonalView(
             Text("Favorite Games")
         }
         Hr()
-        /*
-            Design: https://dribbble.com/shots/24913252-Melissa-Travel-Portal
 
-            My Top favorites:
-            - Halo, Call of Duty, Minecraft, Team Fortress 2
-            - Here to Slay
+        Div(attrs = { classes("game-cards-row") }) {
+            FEATURED_GAMES.forEach { game -> GameCard(game) }
+        }
 
-            Then I want a page thats full of cards of games that I have played, my personal rating.
-            - Way to rank and view them.
-            - Add Notes for each one.
-         */
+        SectionLink(
+            path = "/games",
+            text = "View all games",
+            hoverText = "/games"
+        )
     }
 
     Section(attrs = { classes(*fadeList, "about-music-section", "sec-pad") }) {
@@ -182,14 +223,23 @@ fun AboutPersonalView(
         }
         Hr()
 
-        /*
-            Genres: Reggae, EDM (Bass/Techno/House), HipHop, Old
-            Few Songs: Pick them out
-
-            Spotify embed links
-         */
+        Div(attrs = { classes("music-embeds-list") }) {
+            MUSIC_LIST.forEach { embed ->
+                Div(attrs = { classes("music-embed-item") }) {
+                    Div(attrs = { classes("music-embed-label") }) {
+                        Span(attrs = { classes("music-embed-title") }) { Text(embed.title) }
+                        Span(attrs = { classes("music-embed-artist") }) { Text(embed.artist) }
+                    }
+                    // Inject Spotify's iframe code directly — they provide the full <iframe> snippet
+                    Div(attrs = {
+                        classes("music-embed-wrapper")
+                        ref { el ->
+                            el.innerHTML = embed.iframeCode
+                            onDispose { el.innerHTML = "" }
+                        }
+                    })
+                }
+            }
+        }
     }
-
-
-
 }

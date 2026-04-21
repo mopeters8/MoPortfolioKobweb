@@ -1,0 +1,108 @@
+/* =============================================
+   Game Card — shared on About page (favorites row) and /games page
+   ============================================= */
+
+.game-cards-row {
+    display: flex;
+    gap: 0.875rem;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+    -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, black 88%, transparent 100%);
+}
+
+.game-cards-row::-webkit-scrollbar {
+    display: none;
+}
+
+.game-card-link {
+    flex: none;
+    width: 140px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.game-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--background-hover);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+.game-card-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.game-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3.5rem 0.5rem 0.6rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.65) 55%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.game-card-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+    color: #fff;
+    margin: 0;
+}
+
+.game-card-badges {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+/* Base badge */
+.game-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+/* Rating — color conveys score */
+.game-rating-badge--high {
+    background: rgba(26, 122, 60, 0.85);
+    color: #a8f0c0;
+}
+
+.game-rating-badge--mid {
+    background: rgba(122, 94, 0, 0.85);
+    color: #ffd966;
+}
+
+.game-rating-badge--low {
+    background: rgba(122, 26, 26, 0.85);
+    color: #f0a8a8;
+}
+
+/* Mo's Pick — rare gold badge */
+.game-mospick-badge {
+    background: rgba(120, 88, 0, 0.9);
+    color: #ffd700;
+}

@@ -14,8 +14,8 @@ import mo.web.portfoliofront.components.ProjectModal
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import mo.web.portfoliofront.components.sections.ProjectDisplay
-import mo.web.portfoliofront.infrastructure.FEATURED_PROJECT
-import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
+import mo.web.portfoliofront.infrastructure.data.FEATURED_PROJECT
+import mo.web.portfoliofront.infrastructure.data.PROJECTS_LIST
 import mo.web.portfoliofront.infrastructure.models.Project
 import mo.web.portfoliofront.infrastructure.models.Technologies
 import mo.web.portfoliofront.utility.ModClasses

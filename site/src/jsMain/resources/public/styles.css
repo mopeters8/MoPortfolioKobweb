@@ -378,89 +378,6 @@ hr {
     }
 }
 
-/* Blog Section */
-
-.blog-container {
-    margin: 1rem 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.blog-row-link {
-    text-decoration: none;
-    color: inherit;
-    width: 100%;
-}
-
-.blog-row-link:hover .blog-title {
-    color: var(--secondary);
-}
-
-.blog-row {
-    width: 100%;
-    padding: 0.5rem 8px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    border-radius: var(--border-radius);
-    transition: all 0.2s ease-in-out;
-}
-
-.blog-row:hover {
-    background-color: var(--background-hover);
-}
-
-.blog-readtime {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.blog-readtime span {
-    font-weight: 600;
-    font-size: 0.875rem;
-    color: var(--accent);
-}
-
-.blog-readtime p {
-    font-weight: 500;
-    font-size: 0.75rem;
-    color: var(--accent);
-}
-
-.blog-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.blog-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.2;
-    margin: 0;
-    letter-spacing: -0.5px;
-
-    transition: color 0.2s ease-in-out;
-}
-
-.blog-subtitle {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    opacity: 0.5;
-}
-
-.blog-date {
-    min-width: 100px;
-    text-align: right;
-    font-size: 0.9rem;
-    color: var(--accent);
-}
-
 /* Contact and Resume Section */
 .contact-resume-container {
     display: flex;
@@ -669,25 +586,6 @@ hr {
 
     .nav-item {
         font-size: 0.875rem;
-    }
-
-    .blog-readtime {
-        min-width: auto;
-        font-size: 0.85rem;
-    }
-
-    .blog-title {
-        font-size: 1.25rem;
-    }
-
-    .blog-subtitle {
-        font-size: 0.85rem;
-    }
-
-    .blog-date {
-        min-width: auto;
-        text-align: left;
-        font-size: 0.85rem;
     }
 
     .form-row-split {

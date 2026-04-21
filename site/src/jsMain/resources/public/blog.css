@@ -1,0 +1,181 @@
+/* =============================================
+   Blog Row — shared across home, about, and blog page
+   ============================================= */
+
+.blog-container {
+    margin: 1rem 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.blog-row-link {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.blog-row-link:hover .blog-title {
+    color: var(--secondary);
+}
+
+.blog-row {
+    width: 100%;
+    padding: 0.5rem 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease-in-out;
+}
+
+.blog-row:hover {
+    background-color: var(--background-hover);
+}
+
+.blog-readtime {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-readtime span {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--accent);
+}
+
+.blog-readtime p {
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--accent);
+}
+
+.blog-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.blog-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.5px;
+    transition: color 0.2s ease-in-out;
+}
+
+.blog-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.5;
+}
+
+.blog-date {
+    min-width: 100px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+/* =============================================
+   Blog Page Hero
+   ============================================= */
+
+.blogs-hero {
+    padding: 3rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeIn 0.6s ease-out both;
+}
+
+.blogs-hero h1 {
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin: 0;
+}
+
+.blogs-hero-desc {
+    font-size: 1.05rem;
+    color: silver;
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =============================================
+   Blog Type Filter Chips
+   ============================================= */
+
+.blog-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0.75rem;
+}
+
+.blog-type-chip {
+    padding: 0.3rem 0.8rem;
+    border-radius: 99px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    transition: all 0.18s ease-in-out;
+    user-select: none;
+    line-height: 1.6;
+}
+
+.blog-type-chip:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.blog-type-chip.active {
+    background: var(--secondary);
+    color: var(--background);
+    border-color: var(--secondary);
+    font-weight: 600;
+}
+
+/* =============================================
+   Mobile
+   ============================================= */
+
+@media (max-width: 768px) {
+    .blog-readtime {
+        min-width: auto;
+        font-size: 0.85rem;
+    }
+
+    .blog-title {
+        font-size: 1.25rem;
+    }
+
+    .blog-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .blog-date {
+        min-width: auto;
+        text-align: left;
+        font-size: 0.85rem;
+    }
+
+    .blogs-hero h1 {
+        font-size: 3rem;
+        letter-spacing: -2.5px;
+    }
+
+    .blog-type-chip {
+        font-size: 0.72rem;
+        padding: 0.25rem 0.65rem;
+    }
+}

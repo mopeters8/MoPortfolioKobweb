@@ -21,10 +21,11 @@ import mo.web.portfoliofront.components.sections.BlogDisplay
 import mo.web.portfoliofront.components.sections.ProjectDisplay
 import mo.web.portfoliofront.components.sections.ContactResume
 import mo.web.portfoliofront.components.widgets.SectionLink
-import mo.web.portfoliofront.infrastructure.FEATURED_PROJECT
-import mo.web.portfoliofront.infrastructure.PROJECTS_LIST
+import mo.web.portfoliofront.infrastructure.data.BLOG_LIST
+import mo.web.portfoliofront.infrastructure.data.FEATURED_PROJECT
+import mo.web.portfoliofront.infrastructure.data.PROJECTS_LIST
 import mo.web.portfoliofront.infrastructure.models.Project
-import mo.web.portfoliofront.infrastructure.models.TEST_BLOG_LIST
+import mo.web.portfoliofront.infrastructure.models.sortedByNewest
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
@@ -53,7 +54,7 @@ fun HomePage() {
     val featuredProject = FEATURED_PROJECT
     var openedProject by remember { mutableStateOf<Project?>(null) }
 
-    val blogs = TEST_BLOG_LIST
+    val blogs = BLOG_LIST.sortedByNewest()
 
     ModalOverlay(
         isOpen = openedProject != null,
@@ -122,9 +123,9 @@ fun HomePage() {
         BlogDisplay(blogList = blogs)
 
         SectionLink(
-            path = "https://blog.owen-peters.com",
+            path = "/blog",
             text = "View more write ups",
-            hoverText = "blog.owen-peters.com"
+            hoverText = "/blogs"
         )
     }
 
