@@ -1,8 +1,6 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
-import com.varabyte.kobweb.gradle.core.util.importCss
 import kotlinx.html.link
 import kotlinx.html.script
-import kotlinx.html.style
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -25,6 +23,7 @@ kobweb {
                 link(rel = "stylesheet", href = "/about.css")
                 link(rel = "stylesheet", href = "/blog.css")
                 link(rel = "stylesheet", href = "/games.css")
+                link(rel = "stylesheet", href = "/photos.css")
 
                 link(rel = "preconnect", href = "https://fonts.googleapis.com")
                 link(rel = "preconnect", href = "https://fonts.gstatic.com")
@@ -35,6 +34,81 @@ kobweb {
                     type = "text/javascript"
                 }
             }
+        }
+    }
+    markdown {
+        defaultLayout.set(".components.layout.MarkdownLayout")
+        process.set { markdownEntries ->
+
+            // Local model used only during Gradle processing — mirrors Blog.kt fields
+            data class BlogEntry(
+                val title: String,
+                val subtitle: String,
+                val url: String,
+                val created: String,
+                val readtime: Int,
+                val blogType: String
+            ) {
+                private fun String.esc() = replace("\"", "\\\"")
+                fun toKotlin() =
+                    """    
+                    Blog(
+                        title = "${title.esc()}",
+                        subtitle = "${subtitle.esc()}",
+                        url = "$url",
+                        created = "$created",
+                        readtime = $readtime,
+                        blogType = BlogType.$blogType
+                    )
+                    """
+                }
+
+            val blogEntries = markdownEntries
+                .filter { it.route.startsWith("/blog/") }
+                .mapNotNull { entry ->
+                    val fm = entry.frontMatter
+                    val title = fm["title"]?.singleOrNull() ?: run {
+                        println("Skipping ${entry.filePath}: missing 'title'")
+                        return@mapNotNull null
+                    }
+                    val subtitle = fm["subtitle"]?.singleOrNull() ?: run {
+                        println("Skipping ${entry.filePath}: missing 'subtitle'")
+                        return@mapNotNull null
+                    }
+                    val created = fm["created"]?.singleOrNull() ?: run {
+                        println("Skipping ${entry.filePath}: missing 'created'")
+                        return@mapNotNull null
+                    }
+                    val readtime = fm["readtime"]?.singleOrNull()?.toIntOrNull() ?: run {
+                        println("Skipping ${entry.filePath}: missing or invalid 'readtime'")
+                        return@mapNotNull null
+                    }
+                    val blogType = fm["blogType"]?.singleOrNull() ?: "Life"
+
+                    BlogEntry(
+                        title = title,
+                        subtitle = subtitle,
+                        url = entry.route,
+                        created = created,
+                        readtime = readtime,
+                        blogType = blogType
+                    )
+                }
+                .sortedByDescending { it.created }
+
+            generateKotlin(
+                filePath = "mo/web/portfoliofront/infrastructure/data/BlogList.kt",
+                content = buildString {
+                    appendLine("package mo.web.portfoliofront.infrastructure.data")
+                    appendLine()
+                    appendLine("import mo.web.portfoliofront.infrastructure.models.Blog")
+                    appendLine("import mo.web.portfoliofront.infrastructure.models.BlogType")
+                    appendLine()
+                    appendLine("val BLOG_LIST = listOf(")
+                    blogEntries.forEach { appendLine(it.toKotlin() + ",") }
+                    appendLine(")")
+                }
+            )
         }
     }
 }

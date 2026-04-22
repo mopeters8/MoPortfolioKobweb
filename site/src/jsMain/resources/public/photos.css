@@ -1,0 +1,83 @@
+/* =============================================
+   Photos Page Hero
+   ============================================= */
+
+.photos-hero {
+    padding: 3rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeIn 0.6s ease-out both;
+}
+
+.photos-hero h1 {
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin: 0;
+}
+
+.photos-hero-desc {
+    font-size: 1.05rem;
+    color: silver;
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =============================================
+   Masonry Grid
+   ============================================= */
+
+.photos-grid {
+    columns: 3;
+    column-gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.photo-item {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+}
+
+.photo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+.photo-caption {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin: 0.3rem 0 0;
+    line-height: 1.4;
+}
+
+.photos-empty {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin: 2rem 0;
+}
+
+/* =============================================
+   Mobile
+   ============================================= */
+
+@media (max-width: 768px) {
+    .photos-hero h1 {
+        font-size: 3rem;
+        letter-spacing: -2.5px;
+    }
+
+    .photos-grid {
+        columns: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .photos-grid {
+        columns: 1;
+    }
+}

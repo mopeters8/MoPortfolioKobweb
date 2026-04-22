@@ -4,7 +4,21 @@ enum class BlogType() {
     Technology,
     Gaming,
     Programming,
-    Life
+    Life;
+
+    companion object {
+        fun fromString(s: String): BlogType {
+            val string = s.trim().lowercase()
+            return when (s) {
+                "technology" -> Technology
+                "gaming" -> Gaming
+                "programming" -> Programming
+                "life" -> Life
+                else -> Life
+            }
+        }
+
+    }
 }
 
 /**

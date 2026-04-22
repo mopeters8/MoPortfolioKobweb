@@ -11,17 +11,17 @@ import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun GameCard(game: Game) {
+fun GameCard(
+    game: Game,
+    onGameClick: ((Game) -> Unit)? = null
+) {
     val ratingClass = when {
         game.rating >= 9 -> "game-rating-badge--high"
         game.rating >= 7 -> "game-rating-badge--mid"
         else -> "game-rating-badge--low"
     }
 
-    A(
-        href = "/games#${game.toSlug()}",
-        attrs = { classes("game-card-link") }
-    ) {
+    val cardInner: @Composable () -> Unit = {
         Div(attrs = { classes("game-card") }) {
             Img(
                 src = game.coverImageUrl,
@@ -42,5 +42,17 @@ fun GameCard(game: Game) {
                 }
             }
         }
+    }
+
+    if (onGameClick != null) {
+        Div(attrs = {
+            classes("game-card-link")
+            onClick { onGameClick(game) }
+        }) { cardInner() }
+    } else {
+        A(
+            href = "/games#${game.toSlug()}",
+            attrs = { classes("game-card-link") }
+        ) { cardInner() }
     }
 }

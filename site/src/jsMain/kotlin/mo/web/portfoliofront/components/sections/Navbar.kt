@@ -74,6 +74,7 @@ fun Navbar() {
                     modifier = Modifier.attrsModifier { classes(*blogClasses.split(" ").toTypedArray()) },
                 )
             }
+
         }
     }
 }

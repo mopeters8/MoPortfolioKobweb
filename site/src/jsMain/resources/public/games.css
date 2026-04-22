@@ -1,5 +1,5 @@
 /* =============================================
-   Game Card — shared on About page (favorites row) and /games page
+   Game Card — shared on About page and /games page
    ============================================= */
 
 .game-cards-row {
@@ -73,7 +73,6 @@
     flex-wrap: wrap;
 }
 
-/* Base badge */
 .game-badge {
     display: inline-flex;
     align-items: center;
@@ -85,7 +84,6 @@
     white-space: nowrap;
 }
 
-/* Rating — color conveys score */
 .game-rating-badge--high {
     background: rgba(26, 122, 60, 0.85);
     color: #a8f0c0;
@@ -101,8 +99,98 @@
     color: #f0a8a8;
 }
 
-/* Mo's Pick — rare gold badge */
 .game-mospick-badge {
     background: rgba(120, 88, 0, 0.9);
     color: #ffd700;
+}
+
+/* =============================================
+   Games Page Hero
+   ============================================= */
+
+.games-page-hero {
+    padding: 3rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeIn 0.6s ease-out both;
+}
+
+.games-page-hero h1 {
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin: 0;
+}
+
+.games-page-hero-desc {
+    font-size: 1.05rem;
+    color: silver;
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =============================================
+   Wrapping Game Card Grid
+   ============================================= */
+
+.game-cards-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-top: 1rem;
+}
+
+.game-cards-wrap .game-card-link {
+    flex: none;
+    width: 140px;
+    cursor: pointer;
+}
+
+/* =============================================
+   Game Modal Shell
+   ============================================= */
+
+.game-modal {
+    width: 100%;
+    max-width: 680px;
+    min-height: 200px;
+}
+
+.game-modal-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem 0.5rem 0;
+}
+
+.game-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 1rem;
+    padding: 0.4rem;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}
+
+.game-modal-close:hover {
+    opacity: 1;
+}
+
+/* =============================================
+   Mobile
+   ============================================= */
+
+@media (max-width: 768px) {
+    .games-page-hero h1 {
+        font-size: 3rem;
+        letter-spacing: -2.5px;
+    }
+
+    .game-cards-wrap .game-card-link {
+        width: 120px;
+    }
 }

@@ -7,6 +7,7 @@ object CONSTANTS {
     const val PATH_PROJECTS = "/projects"
     const val PATH_BLOG = "/blog"
     const val PATH_PHOTOS = "/photos"
+    const val PATH_GAMES = "/games"
     const val LINK_BLOG = "https://blog.owen-peters.com"
 
     const val EMAIL_JS_PUBLIC_KEY = "zcwBAAZM2KHyYZ4Ay"
