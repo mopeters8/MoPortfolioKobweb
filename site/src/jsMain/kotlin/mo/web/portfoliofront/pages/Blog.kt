@@ -47,7 +47,7 @@ fun BlogPage() {
                 onClick { activeFilter = null }
             }) { Text("All") }
 
-            BlogType.values().forEach { type ->
+            BlogType.entries.forEach { type ->
                 Div(attrs = {
                     classes("blog-type-chip")
                     if (activeFilter == type) classes("active")

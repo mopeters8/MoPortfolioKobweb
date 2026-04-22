@@ -104,7 +104,7 @@ kobweb {
                     appendLine("import mo.web.portfoliofront.infrastructure.models.Blog")
                     appendLine("import mo.web.portfoliofront.infrastructure.models.BlogType")
                     appendLine()
-                    appendLine("val BLOG_LIST = listOf(")
+                    appendLine("val BLOG_GENERATED_LIST = listOf(")
                     blogEntries.forEach { appendLine(it.toKotlin() + ",") }
                     appendLine(")")
                 }

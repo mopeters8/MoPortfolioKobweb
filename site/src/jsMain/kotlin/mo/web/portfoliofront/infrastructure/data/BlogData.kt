@@ -12,3 +12,5 @@ import mo.web.portfoliofront.infrastructure.models.Blog
 //   created   — YYYY-MM-DD
 //   readtime  — integer (minutes)
 //   blogType  — one of: Technology, Gaming, Programming, Life  (defaults to Life)
+
+val BLOG_LIST = BLOG_GENERATED_LIST

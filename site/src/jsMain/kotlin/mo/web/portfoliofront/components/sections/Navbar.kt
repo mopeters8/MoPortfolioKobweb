@@ -51,7 +51,7 @@ fun Navbar() {
                 )
             }
             Li {
-                val blogClasses = if (currentPath == CONSTANTS.PATH_BLOG) {
+                val blogClasses = if (currentPath.startsWith(CONSTANTS.PATH_BLOG)) {
                     "nav-item nav-item--active"
                 } else {
                     "nav-item"

@@ -133,13 +133,48 @@
 }
 
 /* =============================================
+   Game Type Filter Chips
+   ============================================= */
+
+.game-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0.75rem;
+}
+
+.game-type-chip {
+    padding: 0.3rem 0.8rem;
+    border-radius: 99px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    transition: all 0.18s ease-in-out;
+    user-select: none;
+    line-height: 1.6;
+}
+
+.game-type-chip:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.game-type-chip.active {
+    background: var(--secondary);
+    color: var(--background);
+    border-color: var(--secondary);
+    font-weight: 600;
+}
+
+/* =============================================
    Wrapping Game Card Grid
    ============================================= */
 
 .game-cards-wrap {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.875rem;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
@@ -154,30 +189,115 @@
    ============================================= */
 
 .game-modal {
+    background-color: var(--background);
+    color: var(--text);
+    border-radius: var(--border-radius);
+    padding: 1rem;
     width: 100%;
-    max-width: 680px;
-    min-height: 200px;
+    max-width: 660px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .game-modal-header {
     display: flex;
-    justify-content: flex-end;
-    padding: 0.5rem 0.5rem 0;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 1rem;
+}
+
+.game-modal-title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -1px;
 }
 
 .game-modal-close {
-    background: none;
+    background: transparent;
     border: none;
-    cursor: pointer;
     color: var(--text);
     font-size: 1rem;
-    padding: 0.4rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     opacity: 0.6;
-    transition: opacity 0.15s ease;
 }
 
 .game-modal-close:hover {
+    background-color: var(--background-hover);
     opacity: 1;
+}
+
+/* Body — float layout on desktop */
+.game-modal-body {
+    padding: 1.25rem 0.25rem 0.5rem;
+}
+
+.game-modal-body::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Cover image — floated right */
+.game-modal-cover {
+    float: right;
+    width: 160px;
+    margin: 0 0 0.5rem 1.5rem;
+}
+
+.game-modal-cover-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Badges — floated right, stacked below the cover */
+.game-modal-cover-meta {
+    float: right;
+    clear: right;
+    width: 160px;
+    margin: 0 0 1rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.game-type-badge {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--accent);
+}
+
+/* Text — flows left of the floats on desktop */
+.game-modal-platform {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.2px;
+}
+
+.game-modal-review {
+    margin: 0;
+    font-size: 0.975rem;
+    line-height: 1.7;
+    color: silver;
+}
+
+.game-modal-clearfix {
+    clear: both;
 }
 
 /* =============================================
@@ -192,5 +312,33 @@
 
     .game-cards-wrap .game-card-link {
         width: 120px;
+    }
+
+    .game-type-chip {
+        font-size: 0.72rem;
+        padding: 0.25rem 0.65rem;
+    }
+
+    /* Stack modal: cover (small) → badges row → review */
+    .game-modal {
+        max-height: 95vh;
+    }
+
+    .game-modal-title {
+        font-size: 1.4rem;
+        letter-spacing: -0.5px;
+    }
+
+    .game-modal-cover {
+        float: none;
+        width: 110px;
+        margin: 0 0 0.75rem 0;
+    }
+
+    .game-modal-cover-meta {
+        float: none;
+        clear: none;
+        width: auto;
+        margin: 0 0 1rem 0;
     }
 }

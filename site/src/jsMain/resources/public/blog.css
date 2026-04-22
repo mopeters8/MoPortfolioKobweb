@@ -179,3 +179,288 @@
         padding: 0.25rem 0.65rem;
     }
 }
+
+/* =============================================
+   Markdown Article Layout
+   ============================================= */
+
+.markdown-article {
+    width: 100%;
+    padding: 2.5rem 0 4rem;
+}
+
+.markdown-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Back arrow + H1 inline */
+.markdown-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.markdown-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.95rem;
+    opacity: 0.65;
+    flex-shrink: 0;
+    text-decoration: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.markdown-back:hover {
+    opacity: 1;
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.markdown-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.markdown-subtitle {
+    font-size: 1.05rem;
+    color: silver;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+}
+
+/* Meta row: readtime · type · date */
+.markdown-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.markdown-meta-item {
+    font-size: 0.8rem;
+    color: var(--secondary);
+}
+
+.markdown-meta-dot {
+    font-size: 1rem;
+    color: var(--secondary);
+    opacity: 0.8;
+}
+
+/* =============================================
+   Markdown Content Body
+   ============================================= */
+
+.markdown-content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Headings */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 2rem 0 0.6rem;
+}
+
+.markdown-content h1 { font-size: 2rem;   letter-spacing: -1px; }
+.markdown-content h2 { font-size: 1.6rem; letter-spacing: -0.75px; }
+.markdown-content h3 { font-size: 1.3rem; letter-spacing: -0.4px; }
+.markdown-content h4 { font-size: 1.1rem; letter-spacing: -0.2px; }
+.markdown-content h5 { font-size: 1rem;   font-weight: 600; }
+.markdown-content h6 { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
+
+.markdown-content > *:first-child { margin-top: 0; }
+
+/* Paragraphs */
+.markdown-content p {
+    margin: 0 0 1.2rem;
+}
+
+.markdown-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Links */
+.markdown-content a {
+    color: var(--secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 255, 255, 0.2);
+    transition: text-decoration-color 0.15s ease;
+}
+
+.markdown-content a:hover {
+    text-decoration-color: var(--secondary);
+}
+
+/* Bold / Italic */
+.markdown-content strong {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.markdown-content em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Lists */
+.markdown-content ul,
+.markdown-content ol {
+    margin: 0 0 1.2rem;
+    padding-left: 1.5rem;
+}
+
+.markdown-content li {
+    margin-bottom: 0.3rem;
+    line-height: 1.65;
+}
+
+.markdown-content li::marker {
+    color: var(--accent);
+}
+
+.markdown-content ul ul,
+.markdown-content ol ol,
+.markdown-content ul ol,
+.markdown-content ol ul {
+    margin: 0.2rem 0;
+}
+
+/* Blockquote */
+.markdown-content blockquote {
+    margin: 1.5rem 0;
+    padding: 0.75rem 1.25rem;
+    border-left: 3px solid var(--secondary);
+    background: var(--background-hover);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+.markdown-content blockquote p {
+    margin: 0;
+}
+
+/* Inline code */
+.markdown-content code {
+    font-family: "Cascadia Code", "Fira Code", monospace;
+    font-size: 0.875em;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+/* Code blocks */
+.markdown-content pre {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+.markdown-content pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.875rem;
+    color: var(--text);
+    border-radius: 0;
+}
+
+/* Horizontal rule */
+.markdown-content hr {
+    margin: 2.5rem 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    height: 0;
+}
+
+/* Images */
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+    display: block;
+}
+
+/* Tables */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.markdown-content th {
+    font-weight: 600;
+    background: var(--background-hover);
+    color: var(--text);
+}
+
+.markdown-content td {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.markdown-content tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* =============================================
+   Mobile
+   ============================================= */
+
+@media (max-width: 768px) {
+    .markdown-title {
+        font-size: 1.75rem;
+        letter-spacing: -0.75px;
+    }
+
+    .markdown-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .markdown-content h1 { font-size: 1.6rem; }
+    .markdown-content h2 { font-size: 1.35rem; }
+    .markdown-content h3 { font-size: 1.15rem; }
+    .markdown-content h4 { font-size: 1rem; }
+
+    .markdown-content pre {
+        padding: 1rem;
+        font-size: 0.82rem;
+    }
+}
