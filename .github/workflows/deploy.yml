@@ -52,7 +52,7 @@ jobs:
           ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
 
       - name: Deploy with rsync
-        uses: burnett01/rsync-deployments@v7
+        uses: burnett01/rsync-deployments@v8
         with:
           switches: -avz --delete
           path: site/.kobweb/site/   # <-- LOCAL build output (trailing slash = copy contents)
