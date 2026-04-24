@@ -15,12 +15,15 @@ import mo.web.portfoliofront.infrastructure.models.Game
 import mo.web.portfoliofront.infrastructure.models.GameType
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
+import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Section
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 private sealed class GameFilter {
     object All : GameFilter()
+    object CurrentlyPlaying : GameFilter()
     object MosPicks : GameFilter()
     class ByType(val type: GameType) : GameFilter()
 }
@@ -45,6 +48,7 @@ fun GamesPage() {
 
     val filteredGames = when (val f = activeFilter) {
         is GameFilter.All -> GAMES_LIST
+        is GameFilter.CurrentlyPlaying -> GAMES_LIST.filter { it.currentlyPlaying }
         is GameFilter.MosPicks -> GAMES_LIST.filter { it.mosPick }
         is GameFilter.ByType -> GAMES_LIST.filter { it.type == f.type }
     }
@@ -78,6 +82,14 @@ fun GamesPage() {
 
             Div(attrs = {
                 classes("game-type-chip")
+                if (activeFilter is GameFilter.CurrentlyPlaying) classes("active")
+                onClick {
+                    activeFilter = if (activeFilter is GameFilter.CurrentlyPlaying) GameFilter.All else GameFilter.CurrentlyPlaying
+                }
+            }) { Text("Playing Now") }
+
+            Div(attrs = {
+                classes("game-type-chip")
                 if (activeFilter is GameFilter.MosPicks) classes("active")
                 onClick {
                     activeFilter = if (activeFilter is GameFilter.MosPicks) GameFilter.All else GameFilter.MosPicks
@@ -94,8 +106,21 @@ fun GamesPage() {
             }
         }
 
+        val nowPlaying = filteredGames.filter { it.currentlyPlaying }
+        val rest = filteredGames.filter { !it.currentlyPlaying }
+
+        if (nowPlaying.isNotEmpty()) {
+            Span(attrs = { classes("game-section-label") }) { Text("Playing Now") }
+            Div(attrs = { classes("game-cards-wrap") }) {
+                nowPlaying.forEach { game ->
+                    GameCard(game = game, onGameClick = { openedGame = it })
+                }
+            }
+            Hr(attrs = { classes("game-section-divider") })
+        }
+
         Div(attrs = { classes("game-cards-wrap") }) {
-            filteredGames.forEach { game ->
+            rest.forEach { game ->
                 GameCard(game = game, onGameClick = { openedGame = it })
             }
         }

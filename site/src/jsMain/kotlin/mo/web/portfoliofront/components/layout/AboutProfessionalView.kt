@@ -12,6 +12,7 @@ import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import mo.web.portfoliofront.components.SectionHeader
 import mo.web.portfoliofront.components.sections.ContactResume
 import mo.web.portfoliofront.components.widgets.BridgeAscii
+import mo.web.portfoliofront.components.widgets.SectionLink
 import mo.web.portfoliofront.infrastructure.models.KeyEvent
 import mo.web.portfoliofront.infrastructure.models.SkillCategory
 import mo.web.portfoliofront.infrastructure.models.TechnicalSkill
@@ -101,6 +102,12 @@ fun AboutProfessionalView(
         Hr()
 
         TechnicalSkillsSection()
+
+        SectionLink(
+            path = "/projects",
+            text = "view the results of these skills",
+            hoverText = "/projects"
+        )
     }
 
     Section(attrs = { classes("contact-section", "content-section", "sec-pad") }) {
