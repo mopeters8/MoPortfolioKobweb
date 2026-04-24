@@ -38,13 +38,13 @@ fun AboutProfessionalView(
 
     Section(attrs = { classes(*fadeList, "about-intro-paragraph") }) {
         P(attrs = { classes("about-paragraph") }) {
-            Text("I'm a full-stack web developer who enjoys building practical, reliable, and efficient websites and webapps. ")
+            Text("")
         }
         P(attrs = { classes("about-paragraph") }) {
-            Text("Before going full-time into web development, I taught, worked customer service, and was pursuing my education. My experiences helped me develop strong a problem solving, communicative, and technical troubleshooting mindset.")
-        }
-        P(attrs = { classes("about-paragraph") }) {
-            Text("Humbly, I know I am not the best at this craft but with my hopeful attitude, relentless work ethic, and desire to never stop learning I know I can be an asset to any team that values growth and improvement")
+            Text("" +
+                    "I'm a full-stack web developer focused on building practical, reliable, and efficient web apps. " +
+                    "My background in teaching, customer service and IT helped build my problem-solving and communication skills. " +
+                    "I am always improving my craft and bring a strong work ethic, curiosity, and collaborative approach to every team I'm with.")
         }
     }
 
@@ -64,12 +64,12 @@ fun AboutProfessionalView(
             }
 
             P(attrs = { classes("about-paragraph") }) {
-                Text("I grew up admiring San Francisco. The ocean side peninsula with rolling hills and bridges connecting worlds together. ")
+                Text("I've always admired San Francisco. The ocean side peninsula with rolling hills and bridges connecting worlds together. ")
 
             }
 
             P(attrs = { classes("about-paragraph") }) {
-                Text("I knew one day I would aspire to create a story here - and here I am. The city has been great to me and blessed me with many opportunities and memories. ")
+                Text("I knew one day I'd create a story here - and here I am. The city has been great to me and blessed me with many opportunities and memories. ")
             }
 
             P(attrs = { classes("about-paragraph") }) {

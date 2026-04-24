@@ -11,6 +11,7 @@ import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
+import kotlinx.browser.window
 import kotlinx.coroutines.delay
 import mo.web.portfoliofront.components.layout.AboutPersonalView
 import mo.web.portfoliofront.components.layout.AboutProfessionalView
@@ -29,9 +30,10 @@ fun initAboutPage(ctx: InitRouteContext) {
 @Layout(".components.layout.PageLayout")
 @Composable
 fun AboutPage() {
-    var isPersonal by remember { mutableStateOf(false) }
+    val startPersonal = remember { window.location.search.contains("pers=yes") }
+    var isPersonal by remember { mutableStateOf(startPersonal) }
     var isTransitioning by remember { mutableStateOf(false) }
-    var displayPersonal by remember { mutableStateOf(false) }
+    var displayPersonal by remember { mutableStateOf(startPersonal) }
     var initialized by remember { mutableStateOf(false) }
 
     LaunchedEffect(isPersonal) {
@@ -39,6 +41,8 @@ fun AboutPage() {
             initialized = true
             return@LaunchedEffect
         }
+        val url = if (isPersonal) "${window.location.pathname}?pers=yes" else window.location.pathname
+        window.history.replaceState(null, "", url)
         isTransitioning = true
         delay(400)
         displayPersonal = isPersonal

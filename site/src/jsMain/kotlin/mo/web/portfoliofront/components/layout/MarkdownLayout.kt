@@ -97,7 +97,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                         }
                     }
 
-                    // ── Body ──────────────────────────────────────────────
+
                     Div(attrs = { classes("markdown-content") }) {
                         content()
                     }

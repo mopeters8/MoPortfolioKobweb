@@ -318,7 +318,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 0;
+    z-index: -1;
 }
 
 .about-subtitle,
@@ -670,29 +670,36 @@
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
-    height: 300px;
-    align-items: center;
+/*    height: 240px;*/
+    align-items: flex-end;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding: 1rem 3rem 1rem .5rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
+}
+
+.team-cards-row::-webkit-scrollbar {
+    display: none;
 }
 
 .team-card {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-    min-width: 0;
+    flex: none;
+    width: 170px;
     height: 140px;
     border-radius: 14px;
     border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition:
-        height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        flex-grow 0.4s ease;
+    transform-origin: bottom center;
+    transition: transform 0.250s ease;
 }
 
 .team-card:hover {
-    height: 280px;
-    flex-grow: 1.35;
+    transform: scale(1.04);
 }
 
 /* Dark gradient overlay for text readability */
@@ -704,14 +711,12 @@
     background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
-    transition: height 0.4s ease;
+    /* TODO: see if need to keep — transition: height 0.4s ease; */
 }
 
-.team-card:hover::after {
-    height: 80%;
-}
+/* TODO: see if need to keep — .team-card:hover::after { height: 80%; } */
 
-/* Secondary (personal) image — fades in on hover */
+/* Secondary (personal) image */
 .team-card-secondary-img {
     position: absolute;
     inset: 0;
@@ -719,14 +724,12 @@
     object-fit: cover;
     opacity: 0;
     z-index: 0;
-    transition: opacity 0.5s ease 0.1s;
+    /* TODO: see if need to keep — transition: opacity 0.5s ease 0.1s; fade in on hover */
 }
 
-.team-card:hover .team-card-secondary-img {
-    opacity: 0.5;
-}
+/* TODO: see if need to keep — .team-card:hover .team-card-secondary-img { opacity: 0.5; } */
 
-/* Logo — centered by default, slides to top on hover */
+/* Logo — centered */
 .team-card-logo {
     position: absolute;
     left: 50%;
@@ -736,20 +739,12 @@
     object-fit: contain;
     z-index: 2;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-    transition:
-        top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        width 0.4s ease,
-        height 0.4s ease,
-        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    /* TODO: see if need to keep — transition for top/width/height/transform (logo slide to top on hover) */
 }
 
-.team-card:hover .team-card-logo {
-    top: 1.5rem;
-    width: 38px; height: 38px;
-    transform: translate(-50%, 0);
-}
+/* TODO: see if need to keep — .team-card:hover .team-card-logo { top: 1.5rem; width: 38px; height: 38px; transform: translate(-50%, 0); } */
 
-/* Name + sport — visible by default, fades out on hover */
+/* Name + sport */
 .team-card-meta {
     position: absolute;
     bottom: 0.6rem;
@@ -757,14 +752,10 @@
     text-align: center;
     z-index: 2;
     padding: 0 0.5rem;
-    transition: opacity 0.25s ease, transform 0.3s ease;
+    /* TODO: see if need to keep — transition: opacity 0.25s ease, transform 0.3s ease; (for fade-out on hover) */
 }
 
-.team-card:hover .team-card-meta {
-    opacity: 0;
-    transform: translateY(6px);
-    pointer-events: none;
-}
+/* TODO: see if need to keep — .team-card:hover .team-card-meta { opacity: 0; transform: translateY(6px); pointer-events: none; } */
 
 .team-card-name {
     font-size: 0.78rem;
@@ -772,9 +763,6 @@
     color: #fff;
     line-height: 1.2;
     margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .team-card-sport {
@@ -783,7 +771,7 @@
     margin: 0;
 }
 
-/* Description — hidden by default, fades in on hover */
+/* Description — hidden; reveal logic removed from hover */
 .team-card-description {
     position: absolute;
     bottom: 0;
@@ -791,14 +779,10 @@
     padding: 1.75rem 0.875rem 0.875rem;
     z-index: 2;
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.35s ease 0.15s, transform 0.35s ease 0.15s;
+    /* TODO: see if need to keep — transform: translateY(10px); transition for fade-in on hover */
 }
 
-.team-card:hover .team-card-description {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* TODO: see if need to keep — .team-card:hover .team-card-description { opacity: 1; transform: translateY(0); } */
 
 .team-card-description-name {
     font-size: 0.875rem;
@@ -815,30 +799,8 @@
 }
 
 @media (max-width: 720px) {
-    .team-cards-row {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scrollbar-width: none;
-        padding-right: 3rem;
-        height: auto;
-        min-height: 280px;
-        align-items: flex-start;
-        -webkit-mask-image: linear-gradient(to right, black 78%, transparent 100%);
-        mask-image: linear-gradient(to right, black 78%, transparent 100%);
-    }
-
-    .team-cards-row::-webkit-scrollbar { display: none; }
-
     .team-card {
-        flex: none;
-        width: 72vw;
-        max-width: 220px;
-        height: 140px;
-    }
-
-    .team-card:hover {
-        height: 260px;
-        flex-grow: 1;
+        width: min(72vw, 200px);
     }
 }
 

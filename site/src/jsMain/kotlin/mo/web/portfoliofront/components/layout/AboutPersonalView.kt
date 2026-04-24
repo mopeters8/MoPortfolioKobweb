@@ -19,6 +19,7 @@ import mo.web.portfoliofront.infrastructure.data.SPORTS_TEAMS_LIST
 import mo.web.portfoliofront.infrastructure.models.SportsTeam
 import mo.web.portfoliofront.infrastructure.models.personalBlogs
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Em
 import org.jetbrains.compose.web.dom.H2
 import org.jetbrains.compose.web.dom.H5
 import org.jetbrains.compose.web.dom.Hr
@@ -109,10 +110,11 @@ fun AboutPersonalView(
 
     Section(attrs = { classes(*fadeList, "about-intro-paragraph") }) {
         P(attrs = { classes("about-paragraph") }) {
-            Text("My Dad's original Xbox is what set me down this path of development, gaming and PC's. All my love for technology can be traced back to Halo 2.")
+            Text("Halo 2 - Very first game my dad showed me and the first piece of tech that really clicked. That moment sparked a curiosity that has stuck with me ever since, leading me into gaming, PCs, and eventually development. A lot of my interest in technology goes back to that early question of")
+            Em { Text(" 'what more is there?'.") }
         }
         P(attrs = { classes("about-paragraph") }) {
-            Text("Take a look at my current interests and joys. Here you'll see how I can be a great teammate, coworker and friend.")
+            Text("Take a look at my current interests and what I enjoy. It’s a snapshot of how I think, what I care about, and the kind of teammate I am.")
         }
     }
 
