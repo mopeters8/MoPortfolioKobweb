@@ -3,6 +3,8 @@ package mo.web.portfoliofront.pages
 import androidx.compose.runtime.*
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.attrsModifier
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
@@ -26,8 +28,10 @@ import mo.web.portfoliofront.infrastructure.data.FEATURED_PROJECT
 import mo.web.portfoliofront.infrastructure.data.PROJECTS_LIST
 import mo.web.portfoliofront.infrastructure.models.Project
 import mo.web.portfoliofront.infrastructure.models.sortedByNewest
+import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Em
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Hr
 import org.jetbrains.compose.web.dom.Img
@@ -87,6 +91,13 @@ fun HomePage() {
 
             P {
                 Text("I’m a full-stack web developer focused on building web software that’s dependable and easy to work with. My background spans frontend interfaces, backend services, and deployment. I visualize the full lifecycle of an application, not just one piece of it.")
+            }
+
+
+            P(attrs = Modifier.padding(top = 1.cssRem).toAttrs()) {
+                Text("While I hope I can demonstrate my professional ability here, please enjoy the window into who")
+                Em() { Text(" Owen ")}
+                Text("is personally. I hope to showcase my skills, but also how I can be a great teammate and friend. :) ")
             }
 
             SectionLink(

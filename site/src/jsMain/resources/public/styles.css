@@ -592,6 +592,7 @@ hr {
 @media (max-width: 768px) {
     .navbar {
         padding: 1.25rem 1rem;
+        flex-direction: column;
     }
 
     #nav-name {

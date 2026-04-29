@@ -27,7 +27,7 @@ fun FooterSection() {
         Div(Modifier.AttrClasses("footer-social-row")) {
             // Instagram
             Link(
-                path = "https://instagram.com/yourusername",
+                path = "https://www.instagram.com/m8peters/",
                 modifier = Modifier.attrsModifier {
                     classes("footer-social-link")
                     title("Check out my Instagram!")
@@ -41,7 +41,7 @@ fun FooterSection() {
 
             // LinkedIn
             Link(
-                path = "https://linkedin.com/in/yourusername",
+                path = "https://www.linkedin.com/in/m8peters/",
                 modifier = Modifier.attrsModifier {
                     classes("footer-social-link")
                     title("Connect with me on LinkedIn!")
@@ -55,7 +55,7 @@ fun FooterSection() {
 
             // GitHub
             Link(
-                path = "https://github.com/yourusername",
+                path = "https://github.com/mopeters8",
                 modifier = Modifier.attrsModifier {
                     classes("footer-social-link")
                     title("Check out my Github contributions!")
@@ -69,7 +69,7 @@ fun FooterSection() {
 
             // Resume
             Link(
-                path = "/resume.pdf",
+                path = "/OwenPetersResume.pdf",
                 modifier = Modifier.attrsModifier {
                     classes("footer-social-link")
                     title("Download my resume!")

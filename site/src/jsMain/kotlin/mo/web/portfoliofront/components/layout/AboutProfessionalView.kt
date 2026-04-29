@@ -39,9 +39,6 @@ fun AboutProfessionalView(
 
     Section(attrs = { classes(*fadeList, "about-intro-paragraph") }) {
         P(attrs = { classes("about-paragraph") }) {
-            Text("")
-        }
-        P(attrs = { classes("about-paragraph") }) {
             Text("" +
                     "I'm a full-stack web developer focused on building practical, reliable, and efficient web apps. " +
                     "My background in teaching, customer service and IT helped build my problem-solving and communication skills. " +
@@ -105,7 +102,7 @@ fun AboutProfessionalView(
 
         SectionLink(
             path = "/projects",
-            text = "view the results of these skills",
+            text = "View my skills at work!",
             hoverText = "/projects"
         )
     }
