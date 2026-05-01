@@ -1,15 +1,17 @@
-/* About Page Mode Toggle */
+/* =============================================
+   Mode Toggle (Professional / Personal Switch)
+   ============================================= */
 
 .about-toggle-row {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.5rem 0px;
+    padding: 0.5rem 0;
     position: sticky;
     top: 1rem;
     z-index: 10;
-    pointer-events: none; /* let clicks fall through to underlying content */
+    pointer-events: none;
 }
 
 .about-toggle-widget {
@@ -17,13 +19,9 @@
     flex-direction: row;
     align-items: center;
     gap: 0.875rem;
-/*    background: color-mix(in srgb, var(--background) 75%, transparent);*/
-/*    backdrop-filter: blur(12px);*/
     pointer-events: all;
     user-select: none;
 }
-
-/* Label text area  */
 
 .about-toggle-label {
     position: relative;
@@ -57,7 +55,6 @@
     line-height: 1.3;
 }
 
-/* Professional visible by default */
 .about-toggle-label-professional {
     opacity: 1;
     transform: translateY(0);
@@ -68,7 +65,6 @@
     transform: translateY(5px);
 }
 
-/* Flip when personal mode is active */
 .about-mode--personal .about-toggle-label-professional {
     opacity: 0;
     transform: translateY(-5px);
@@ -78,8 +74,6 @@
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Switch track & thumb */
 
 .about-toggle-switch {
     position: relative;
@@ -119,7 +113,9 @@
     transform: translateX(18px);
 }
 
-/* Page content fade */
+/* =============================================
+   Page Content Fade (view transition)
+   ============================================= */
 
 .about-page-content {
     width: 100%;
@@ -132,13 +128,39 @@
     pointer-events: none;
 }
 
-/* Fancy O Header Movement */
+/* =============================================
+   Section Fade Keyframes
+   ============================================= */
+
+@keyframes u-fade-enter {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes u-fade-exit {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(16px); }
+}
+
+.u-fade {
+    animation: u-fade-enter 0.55s ease forwards;
+}
+
+.u-fade--hidden {
+    animation: u-fade-exit 0.4s ease forwards;
+    pointer-events: none;
+}
+
+/* =============================================
+   Hero Section
+   ============================================= */
+
 .about-hero {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5rem 0px;
+    padding: 5rem 0;
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
     gap: 1rem;
@@ -181,7 +203,15 @@
     font-size: 1rem;
 }
 
-/* Hero heading letter/text transitions */
+.about-hero-subtitle {
+    font-size: 1rem;
+    color: silver;
+    margin-bottom: 1.5rem;
+}
+
+/* =============================================
+   Animated Hero Heading (Switcher)
+   ============================================= */
 
 .switcher-header {
     font-size: clamp(1rem, 9vw, 4rem);
@@ -192,105 +222,53 @@
     white-space: nowrap;
 }
 
-/* O and P — always visible, color fades between modes */
 .about-hero-letter {
     display: inline;
     transition: color 0.5s ease;
 }
 
-.switcher-header--professional .about-hero-letter {
-    color: var(--secondary);
-}
+.switcher-header--professional .about-hero-letter { color: var(--secondary); }
+.switcher-header--personal    .about-hero-letter { color: var(--primary); }
 
-.switcher-header--personal .about-hero-letter {
-    color: var(--primary);
-}
-
-/* Variable text parts inside the hero H1 — inline-block required for transforms */
 .about-hero-text {
     display: inline-block;
     white-space: nowrap;
 }
 
-/* Subtitle below hero heading */
-.about-hero-subtitle {
-    font-size: 1rem;
-    color: silver;
-    margin-bottom: 1.5rem;
-}
-
-/* Section fade in/out on view switch */
-
-@keyframes u-fade-enter {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes u-fade-exit {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-}
-
-.u-fade {
-    animation: u-fade-enter 0.55s ease forwards;
-}
-
-.u-fade--hidden {
-    animation: u-fade-exit 0.4s ease forwards;
-    pointer-events: none;
-}
-
-/*
-    ========================================================
-                    END OF FANCY HEADER STUFF
-                    - More General Page styles here
-    ========================================================
-*/
+/* =============================================
+   General Typography
+   ============================================= */
 
 .about-title {
     font-size: 2rem;
     line-height: 1;
     font-weight: 700;
     letter-spacing: -2.5px;
+    position: relative;
+    z-index: 1;
 }
 
 .about-subtitle {
     color: silver;
     font-size: 1.5rem;
-    margin: 0px;
+    margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .about-paragraph {
     font-size: 1rem;
-    margin: 8px 0px;
+    margin: 8px 0;
 }
-
-/*
-    ========================================================
-                    ABOUT LOCATION SECTION
-    ========================================================
-*/
 
 .about-intro-paragraph {
     color: silver;
     font-size: 1rem;
 }
 
-.about-location-section {
-
-}
+/* =============================================
+   Location / ASCII Section
+   ============================================= */
 
 .about-location-header {
     position: relative;
@@ -308,7 +286,7 @@
 
 .about-location-header .about-paragraph {
     font-size: 1.15rem;
-    margin: 16px 0px;
+    margin: 16px 0;
     width: min(100%, 500px);
     text-align: justify;
 }
@@ -321,12 +299,6 @@
     z-index: -1;
 }
 
-.about-subtitle,
-.about-title {
-    position: relative;
-    z-index: 1;
-}
-
 .bridge-ascii-art {
     font-family: "Courier New", Courier, monospace;
     white-space: pre;
@@ -337,38 +309,14 @@
     padding: 20px 10px;
 }
 
-/*
-    ========================================================
-                    EXPERIENCES SECTION
-    ========================================================
-*/
-
-.about-events-section {
-
-}
+/* =============================================
+   Key Events / Timeline Section
+   ============================================= */
 
 .about-key-list {
     list-style: none;
     padding-left: 0;
     position: relative;
-}
-
-/* vertical line */
-.about-key-list::before {
-    content: "";
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: dimgrey;
-}
-
-/* each item */
-.about-key-list li {
-    position: relative;
-    padding-left: 40px;
-    margin-bottom: 24px;
 }
 
 .about-key-list::before {
@@ -380,18 +328,23 @@
     width: 2px;
     background: linear-gradient(
         to bottom,
-        rgba(192,192,192,1) 0%,
+        rgba(192,192,192,1)   0%,
         rgba(192,192,192,0.6) 90%,
-        rgba(192,192,192,0) 100%
+        rgba(192,192,192,0)   100%
     );
 }
 
-/* custom circle */
+.about-key-list li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 24px;
+}
+
 .about-key-list li::before {
     content: "";
     position: absolute;
     left: 5px;
-    top: 0px;
+    top: 0;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -405,19 +358,12 @@
     display: inline-block;
 }
 
-.about-key-item h3 {
-    font-size: 1.25rem;
-}
+.about-key-item h3 { font-size: 1.25rem; }
+.about-key-item p  { font-size: 0.875rem; }
 
-.about-key-item p {
-    font-size: 0.875rem;
-}
-
-/*
-    ========================================================
-                    TECHNICAL SKILLS SECTION
-    ========================================================
-*/
+/* =============================================
+   Technical Skills Section
+   ============================================= */
 
 .skill-filter-tabs {
     display: flex;
@@ -468,11 +414,9 @@
     transition: color 0.18s ease;
 }
 
-/*
-    ========================================================
-                    HOBBY CARDS SECTION
-    ========================================================
-*/
+/* =============================================
+   Hobby Cards
+   ============================================= */
 
 .hobby-cards-row {
     display: flex;
@@ -484,7 +428,7 @@
 .hobby-card {
     flex: 1 1 0;
     min-width: 0;
-    height: 240px;
+    height: 190px;
     position: relative;
     border-radius: 14px;
     border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
@@ -493,7 +437,6 @@
     cursor: pointer;
 }
 
-/* Gradient overlay — fades in on hover */
 .hobby-card::before {
     content: "";
     position: absolute;
@@ -512,7 +455,6 @@
     opacity: 1;
 }
 
-/* Icon — centered by default, moves to top on hover */
 .hobby-card-icon-wrap {
     position: absolute;
     left: 50%;
@@ -536,7 +478,6 @@
     color: var(--text);
 }
 
-/* Title — below icon near bottom, disappears on hover */
 .hobby-card-title {
     position: absolute;
     bottom: 3.25rem;
@@ -560,7 +501,6 @@
     pointer-events: none;
 }
 
-/* Description preview — small slice at bottom, fades out on hover */
 .hobby-card-desc-preview {
     position: absolute;
     bottom: 0.5rem;
@@ -584,23 +524,24 @@
     pointer-events: none;
 }
 
-/* Description full — centered, hidden default, reveals on hover */
 .hobby-card-desc-full {
     position: absolute;
-    top: 4rem;
-    bottom: 2.75rem;
+    top: 3.25rem;
+    bottom: 2.25rem;
     left: 0;
     right: 0;
     margin: 0;
-    padding: 0 1.25rem;
-    font-size: 0.82rem;
-    line-height: 1.55;
+/*    padding: 0 1.25rem;*/
+    font-size: 0.78rem;
+    line-height: 1.5;
     text-align: center;
     color: color-mix(in srgb, var(--text) 90%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: scroll;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     opacity: 0;
     transform: translateY(10px);
     z-index: 1;
@@ -612,7 +553,6 @@
     transform: translateY(0);
 }
 
-/* Link — bottom center, hidden default, reveals on hover */
 .hobby-card-link {
     position: absolute;
     bottom: 0.875rem;
@@ -638,45 +578,19 @@
     text-decoration: underline;
 }
 
-/* Mobile: horizontal scroll with right-edge fade hint */
-@media (max-width: 720px) {
-    .hobby-cards-row {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scrollbar-width: none;
-        padding-right: 3rem;
-        -webkit-mask-image: linear-gradient(to right, black 78%, transparent 100%);
-        mask-image: linear-gradient(to right, black 78%, transparent 100%);
-    }
-
-    .hobby-cards-row::-webkit-scrollbar {
-        display: none;
-    }
-
-    .hobby-card {
-        flex: none;
-        width: 72vw;
-        max-width: 260px;
-    }
-}
-
-/*
-    ========================================================
-                    SPORTS TEAMS SECTION
-    ========================================================
-*/
+/* =============================================
+   Sports Teams Section
+   ============================================= */
 
 .team-cards-row {
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
-/*    height: 240px;*/
     align-items: flex-end;
-    padding-bottom: 0.75rem;
-    overflow-x: auto;
+    overflow-x: scroll;
     flex-wrap: nowrap;
     scrollbar-width: none;
-    padding: 1rem 3rem 1rem .5rem;
+    padding: 0.5rem 10rem 0.25rem 3rem;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
 }
@@ -685,8 +599,21 @@
     display: none;
 }
 
-.team-card {
+.team-card-wrapper {
     flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-card-arrow {
+    color: var(--secondary);
+    font-size: 1rem;
+    margin-bottom: 16px;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.team-card {
     width: 170px;
     height: 140px;
     border-radius: 14px;
@@ -695,14 +622,13 @@
     overflow: hidden;
     cursor: pointer;
     transform-origin: bottom center;
-    transition: transform 0.250s ease;
+    transition: transform 0.25s ease;
 }
 
-.team-card:hover {
+.team-card--selected {
     transform: scale(1.04);
 }
 
-/* Dark gradient overlay for text readability */
 .team-card::after {
     content: "";
     position: absolute;
@@ -711,51 +637,39 @@
     background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
-    /* TODO: see if need to keep — transition: height 0.4s ease; */
 }
 
-/* TODO: see if need to keep — .team-card:hover::after { height: 80%; } */
-
-/* Secondary (personal) image */
 .team-card-secondary-img {
     position: absolute;
     inset: 0;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     opacity: 0;
     z-index: 0;
-    /* TODO: see if need to keep — transition: opacity 0.5s ease 0.1s; fade in on hover */
 }
 
-/* TODO: see if need to keep — .team-card:hover .team-card-secondary-img { opacity: 0.5; } */
-
-/* Logo — centered */
 .team-card-logo {
     position: absolute;
     left: 50%;
     top: 38%;
     transform: translate(-50%, -50%);
-    width: 56px; height: 56px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
     z-index: 2;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-    /* TODO: see if need to keep — transition for top/width/height/transform (logo slide to top on hover) */
 }
 
-/* TODO: see if need to keep — .team-card:hover .team-card-logo { top: 1.5rem; width: 38px; height: 38px; transform: translate(-50%, 0); } */
-
-/* Name + sport */
 .team-card-meta {
     position: absolute;
     bottom: 0.6rem;
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     text-align: center;
     z-index: 2;
     padding: 0 0.5rem;
-    /* TODO: see if need to keep — transition: opacity 0.25s ease, transform 0.3s ease; (for fade-out on hover) */
 }
-
-/* TODO: see if need to keep — .team-card:hover .team-card-meta { opacity: 0; transform: translateY(6px); pointer-events: none; } */
 
 .team-card-name {
     font-size: 0.78rem;
@@ -771,44 +685,24 @@
     margin: 0;
 }
 
-/* Description — hidden; reveal logic removed from hover */
-.team-card-description {
-    position: absolute;
-    bottom: 0;
-    left: 0; right: 0;
-    padding: 1.75rem 0.875rem 0.875rem;
-    z-index: 2;
+.team-description-panel {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 2rem 0;
+    color: silver;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.team-description-text {
+    animation: fadeIn 0.35s ease forwards;
     opacity: 0;
-    /* TODO: see if need to keep — transform: translateY(10px); transition for fade-in on hover */
-}
-
-/* TODO: see if need to keep — .team-card:hover .team-card-description { opacity: 1; transform: translateY(0); } */
-
-.team-card-description-name {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 0.35rem;
-}
-
-.team-card-description p {
-    font-size: 0.72rem;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.85);
     margin: 0;
 }
 
-@media (max-width: 720px) {
-    .team-card {
-        width: min(72vw, 200px);
-    }
-}
-
-/*
-    ========================================================
-                    MUSIC SECTION
-    ========================================================
-*/
+/* =============================================
+   Music Section
+   ============================================= */
 
 .music-embeds-list {
     display: flex;
@@ -850,5 +744,29 @@
 
 .music-embed-wrapper {
     width: 100%;
-    line-height: 0; /* collapse whitespace around the injected iframe */
+    line-height: 0;
+}
+
+/* =============================================
+   Mobile / Responsive
+   ============================================= */
+
+@media (max-width: 720px) {
+    .hobby-cards-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow-x: unset;
+        padding-right: 0;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .hobby-card {
+        width: 100%;
+        height: 190px;
+    }
+
+    .team-card {
+        width: min(72vw, 200px);
+    }
 }

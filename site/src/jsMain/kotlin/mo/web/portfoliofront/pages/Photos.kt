@@ -1,13 +1,18 @@
 package mo.web.portfoliofront.pages
 
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
 import com.varabyte.kobweb.core.init.InitRouteContext
 import com.varabyte.kobweb.core.layout.Layout
+import mo.web.portfoliofront.components.ModalOverlay
+import mo.web.portfoliofront.components.PhotoModal
 import mo.web.portfoliofront.components.layout.PageLayoutData
 import mo.web.portfoliofront.infrastructure.data.PHOTOS_LIST
+import mo.web.portfoliofront.infrastructure.models.Photo
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Img
@@ -24,7 +29,21 @@ fun initPhotosPage(ctx: InitRouteContext) {
 @Layout(".components.layout.PageLayout")
 @Composable
 fun PhotosPage() {
+
     val photos = PHOTOS_LIST
+    var openedPhoto by remember { mutableStateOf<Photo?>(null) }
+
+    ModalOverlay(
+        isOpen = openedPhoto != null,
+        onClose = { openedPhoto = null },
+    ) {
+        openedPhoto?.let { photo ->
+            PhotoModal(
+                photo = photo,
+                onClose = { openedPhoto = null }
+            )
+        }
+    }
 
     Section(attrs = { classes("photos-hero") }) {
         H1 { Text("Photos") }
@@ -45,7 +64,10 @@ fun PhotosPage() {
                         Img(
                             src = photo.imageUrl,
                             alt = photo.alt,
-                            attrs = { classes("photo-img") }
+                            attrs = {
+                                classes("photo-img")
+                                onClick { openedPhoto = photo }
+                            }
                         )
                         photo.caption?.let { caption ->
                             P(attrs = { classes("photo-caption") }) {

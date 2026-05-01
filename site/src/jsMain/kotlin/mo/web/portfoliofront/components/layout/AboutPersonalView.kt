@@ -1,9 +1,15 @@
 package mo.web.portfoliofront.components.layout
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.attrsModifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaBullseye
+import com.varabyte.kobweb.silk.components.icons.fa.FaChevronDown
 import com.varabyte.kobweb.silk.components.icons.fa.FaCode
 import com.varabyte.kobweb.silk.components.icons.fa.FaGamepad
 import com.varabyte.kobweb.silk.components.icons.fa.FaMusic
@@ -63,40 +69,43 @@ private fun HobbyCard(
 }
 
 @Composable
-private fun TeamCard(team: SportsTeam) {
-    // Append hex alpha to team colors: b3 ≈ 70%, 80 ≈ 50%
+private fun TeamCard(
+    team: SportsTeam,
+    isSelected: Boolean,
+    onClick: () -> Unit,
+) {
     val gradientStyle = "background: linear-gradient(145deg, ${team.primaryColor}b3, ${team.secondaryColor}80)"
 
     Div(attrs = {
-        classes("team-card")
-        attr("style", gradientStyle)
+        classes("team-card-wrapper")
     }) {
-        // Personal photo — fades in on hover if provided
-        team.secondImage?.let { src ->
+        if (isSelected) {
+            Div(attrs = { classes("team-card-arrow") }) {
+                FaChevronDown(modifier = Modifier)
+            }
+        }
+        Div(attrs = {
+            if (isSelected) classes("team-card", "team-card--selected")
+            else classes("team-card")
+            attr("style", gradientStyle)
+            onClick { onClick() }
+        }) {
+            team.secondImage?.let { src ->
+                Img(
+                    src = src,
+                    alt = "${team.name} personal photo",
+                    attrs = { classes("team-card-secondary-img") }
+                )
+            }
             Img(
-                src = src,
-                alt = "${team.name} personal photo",
-                attrs = { classes("team-card-secondary-img") }
+                src = team.logoPath,
+                alt = "${team.name} logo",
+                attrs = { classes("team-card-logo") }
             )
-        }
-
-        // Logo — centered by default, slides to top-center on hover
-        Img(
-            src = team.logoPath,
-            alt = "${team.name} logo",
-            attrs = { classes("team-card-logo") }
-        )
-
-        // Name + sport label — visible by default, fades out on hover
-        Div(attrs = { classes("team-card-meta") }) {
-            P(attrs = { classes("team-card-name") }) { Text(team.name) }
-            P(attrs = { classes("team-card-sport") }) { Text(team.sport) }
-        }
-
-        // Description — hidden by default, fades in on hover
-        Div(attrs = { classes("team-card-description") }) {
-            P(attrs = { classes("team-card-description-name") }) { Text(team.name) }
-            P { Text(team.description) }
+            Div(attrs = { classes("team-card-meta") }) {
+                P(attrs = { classes("team-card-name") }) { Text(team.name) }
+                P(attrs = { classes("team-card-sport") }) { Text(team.sport) }
+            }
         }
     }
 }
@@ -108,13 +117,15 @@ fun AboutPersonalView(
     val fadeClass = if (isTransitioning) "u-fade u-fade--hidden" else "u-fade"
     val fadeList = fadeClass.split(" ").toTypedArray()
 
+    var selectedTeam by remember { mutableStateOf(SPORTS_TEAMS_LIST.first()) }
+
     Section(attrs = { classes(*fadeList, "about-intro-paragraph") }) {
         P(attrs = { classes("about-paragraph") }) {
             Text("Halo 2 - Very first game my dad showed me and the first piece of tech that really clicked. That moment sparked a curiosity that has stuck with me ever since, leading me into gaming, PCs, and eventually development. A lot of my interest in technology goes back to that early question of")
             Em { Text(" 'what more is there?'.") }
         }
         P(attrs = { classes("about-paragraph") }) {
-            Text("Take a look at my current interests and what I enjoy. It’s a snapshot of how I think, what I care about, and the kind of teammate I am.")
+            Text("Take a look at my current interests and what I enjoy. It's a snapshot of how I think, what I care about, and the kind of teammate I am.")
         }
     }
 
@@ -192,7 +203,22 @@ fun AboutPersonalView(
         Hr()
 
         Div(attrs = { classes("team-cards-row") }) {
-            SPORTS_TEAMS_LIST.forEach { team -> TeamCard(team) }
+            SPORTS_TEAMS_LIST.forEach { team ->
+                val isSelected = selectedTeam.name == team.name
+                TeamCard(
+                    team = team,
+                    isSelected = isSelected,
+                    onClick = { selectedTeam = team }
+                )
+            }
+        }
+
+        Div(attrs = { classes("team-description-panel") }) {
+            key(selectedTeam.name) {
+                P(attrs = { classes("team-description-text") }) {
+                    Text(selectedTeam.description)
+                }
+            }
         }
     }
 
@@ -232,7 +258,6 @@ fun AboutPersonalView(
                         Span(attrs = { classes("music-embed-title") }) { Text(embed.title) }
                         Span(attrs = { classes("music-embed-artist") }) { Text(embed.artist) }
                     }
-                    // Inject Spotify's iframe code directly — they provide the full <iframe> snippet
                     Div(attrs = {
                         classes("music-embed-wrapper")
                         ref { el ->
