@@ -149,7 +149,6 @@ val GAMES_LIST = listOf(
         platform = "PC"
     ),
 
-    // TODO: Finish and adjust score
     Game(
         title = "Metro 2033",
         coverImageUrl = "https://cdn2.steamgriddb.com/thumb/c79b09261c899f5507ac7bdf8e993f2b.jpg",
@@ -157,8 +156,20 @@ val GAMES_LIST = listOf(
         type = GameType.VideoGame,
         featured = false,
         mosPick = false,
-        currentlyPlaying = true,
+        currentlyPlaying = false,
         review = "What a treat of a game. Slightly older, but I love the grungy, post apocalyptic atmosphere. The immersion with the sounds, lack of hud, and solid graphics get me deeply immersed. It feels fairly easy to pick up, especially with it on my Steam Deck. The linear progression of the story makes it easy to consume, while still being able to be entrenched in immersion. Enjoying it so far, and plan to finish soon with a higher score if it keeps it up. ",
+        platform = "PC"
+    ),
+
+    Game(
+        title = "Metro Last Light",
+        coverImageUrl = "https://cdn2.steamgriddb.com/thumb/5dee3e9b44a5b8b1da372f44c5ee6180.jpg",
+        rating = 8,
+        type = GameType.VideoGame,
+        featured = false,
+        mosPick = false,
+        currentlyPlaying = true,
+        review = "Improved lighting and balancing, but same UI and weapons make Metro Last Light feel like a DLC rather than a new game. However, with a continuation of the story of the last one, it doesn't make it feel lazy or out of place. While this game is also on rails, seeing more flank routes, more loadout options and increased human combat makes this an upgraded experience for me personally.",
         platform = "PC"
     ),
 

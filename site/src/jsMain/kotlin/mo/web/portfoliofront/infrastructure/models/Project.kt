@@ -42,7 +42,11 @@ enum class Technologies(val iconUrl: String) {
     MONGODB("/icons/mongodb.svg"),
     BOOTSTRAP("/icons/Bootstrap.svg"),
     NEXTJS("/icons/NextJs.svg"),
-    SUPABASE("/icons/Supabase.svg");
+    SUPABASE("/icons/Supabase.svg"),
+
+    DISCORD("https://www.svgrepo.com/show/353655/discord-icon.svg")
+
+    ;
 
     companion object {
         fun getTechnologyFilters(): List<Technologies> {
